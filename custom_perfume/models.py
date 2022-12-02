@@ -18,6 +18,18 @@ def upload_to_note_image(instance, filename):
     filename = '{}.{}'.format(uuid, ext)
     return os.path.join(upload_to, filename)
 
+def upload_to_package_image(instance, filename):
+    upload_to = f'package_image/'
+    ext = filename.split('.')[-1]
+    uuid = uuid4().hex
+    filename = '{}.{}'.format(uuid, ext)
+    return os.path.join(upload_to, filename)
+
+class Package(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to=upload_to_package_image, max_length=255)
+    # package_category = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
+
 class NoteCategory(models.Model):
     name = models.CharField(max_length=100)
 
@@ -35,7 +47,7 @@ class CustomPerfume(models.Model):
     note01 = models.ForeignKey(Note, on_delete=models.CASCADE)
     note02 = models.ForeignKey(Note, on_delete=models.CASCADE)
     note03 = models.ForeignKey(Note, on_delete=models.CASCADE)
-    # package = models.ForeignKey(모델, on_delete=models.CASCADE)
+    package = models.ForeignKey(Package, on_delete=models.CASCADE)
     
 
     
