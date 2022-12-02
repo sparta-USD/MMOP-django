@@ -2,12 +2,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.generics import get_object_or_404
 
 from users.serializers import (
     CustomTokenObtainPairSerializer,
-    UserSerializer,
+    UserSerializer, ProfileSerializer, ProfileEditSerializer
     )
-
+from users.models import User
 
 class SignupView(APIView):
     def post(self, request):
@@ -19,3 +20,19 @@ class SignupView(APIView):
 
 class SigninView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+class ProfileView(APIView):
+    def get(self, request, username):
+        profile = get_object_or_404(User, username=username)
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def put(self, request, username):
+        profile = get_object_or_404(User, username=username)
+        serializer = ProfileEditSerializer(profile, data=request.data, partial = True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
