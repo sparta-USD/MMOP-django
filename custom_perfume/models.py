@@ -25,10 +25,13 @@ def upload_to_package_image(instance, filename):
     filename = '{}.{}'.format(uuid, ext)
     return os.path.join(upload_to, filename)
 
+class PackageCategory(models.Model):
+    name = models.CharField(max_length=100)
+
 class Package(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to=upload_to_package_image, max_length=255)
-    # package_category = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
+    package_category = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
 
 class NoteCategory(models.Model):
     name = models.CharField(max_length=100)
