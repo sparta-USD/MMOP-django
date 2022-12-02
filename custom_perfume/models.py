@@ -18,11 +18,14 @@ def upload_to_note_image(instance, filename):
     filename = '{}.{}'.format(uuid, ext)
     return os.path.join(upload_to, filename)
 
+class NoteCategory(models.Model):
+    name = models.CharField(max_length=100)
+
 class Note(models.Model):
     title = models.CharField(max_length=100)
     type = models.CharField(max_length=100)
     image = models.ImageField(upload_to=upload_to_note_image, max_length=255)
-    # note_category = models.ForeignKey(모델, on_delete=models.CASCADE)
+    note_category = models.ForeignKey(NoteCategory, on_delete=models.CASCADE)
     
 class CustomPerfume(models.Model):
     title = models.CharField(max_length=100)
