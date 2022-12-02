@@ -11,3 +11,9 @@ class ReviewCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = ("good_content", "bad_content", "grade", "image")
+        
+
+class ReviewUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ('good_content', 'bad_content', 'grade', 'image')
