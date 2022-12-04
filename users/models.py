@@ -42,7 +42,7 @@ class User(AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     last_login = models.DateTimeField(auto_now=True, null=True, blank=True)
     provider = models.CharField(max_length=50, null=True, blank=True)
-    phone_number = models.CharField(max_length=11, null=True, blank=True)
+    phone_number = models.CharField(max_length=13, null=True, blank=True)
 
     objects = UserManager()
 
