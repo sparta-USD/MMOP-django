@@ -37,9 +37,9 @@ class NoteCategory(models.Model):
     name = models.CharField(max_length=100)
 
 class Note(models.Model):
-    title = models.CharField(max_length=100)
-    type = models.CharField(max_length=100)
-    image = models.ImageField(upload_to=upload_to_note_image, max_length=255)
+    name = models.CharField(max_length=100)
+    kor_name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to=upload_to_note_image, max_length=255, null=True)
     note_category = models.ForeignKey(NoteCategory, on_delete=models.CASCADE)
     
 class CustomPerfume(models.Model):
@@ -47,9 +47,9 @@ class CustomPerfume(models.Model):
     logo = models.ImageField(upload_to=upload_to_custom_perfume_logo, max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     # creator = models.ForeignKey(모델, on_delete=models.CASCADE)
-    note01 = models.ForeignKey(Note, on_delete=models.CASCADE)
-    note02 = models.ForeignKey(Note, on_delete=models.CASCADE)
-    note03 = models.ForeignKey(Note, on_delete=models.CASCADE)
+    note01 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note01')
+    note02 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note02')
+    note03 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note03')
     package = models.ForeignKey(Package, on_delete=models.CASCADE)
     
 
