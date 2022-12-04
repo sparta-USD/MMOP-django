@@ -1,0 +1,19 @@
+[{
+    "model": "custom_perfume.packagecategory",
+    "fields": {
+      "name": "liquid_package"
+    }
+  },
+  {
+    "model": "custom_perfume.packagecategory",
+    "fields": {
+      "name": "solid_package"
+    }
+  },
+  {
+    "model": "custom_perfume.packagecategory",
+    "fields": {
+      "name": "rollon_package"
+    }
+  }
+]

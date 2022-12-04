@@ -1,0 +1,122 @@
+[
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "모던 사각 향수 공병",       
+            "image": "https://degrasse.co.kr/web/product/big/202211/b799d4c30aa72f0d3c82e449fed92425.png",
+            "package_category": 1
+      }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "클리어 향수 용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202209/b7b2c002f1823ba48c07b275ec677d95.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "슬림 원통 클림프 향수용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/91e980dd6f786edfcf733364df9dd05c.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "직사각 조말론 클림프 향수용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202206/b10ea9c5dfacd8b2b984e764ecd52b7b.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "루이 향수용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202206/04a48b29daf757ed817d8216bff9a44f.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "바이레도 향수공병",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/d1662877e72117d49ce7cd16a4fe042d.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "타원 스와르 퍼퓸 글라스",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/65bbc1826362d24e27698a648b304e66.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "조말론 스퀘어 향수용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/4e6215f9a52a544b62677fe88a71af6d.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "라운드 실린더 향수용기",       
+            "image": "https://degrasse.co.kr/web/product/big/201911/491c289e9febb99ba4c06417945d408f.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "럭셔리 루텐 향수유리용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/b1fe0df5cff9d8ae1dc2c554defe3f7b.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "크리스탈 퍼퓸 글라스",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/91131e615012b54b70d8a09e537c2187.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "모자이크 패턴 퍼퓸 글라스",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/e9f9306797d35c5add5b240bb25cb7f4.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "라운드 퍼퓸 글라스",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/7c1fa858dd5efa77c54867ae021ec69c.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "크리스탈 스퀘어 퍼퓸 글라스",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/bb6f7d5420a801a23d54bf6fb91d302d.png",
+            "package_category": 1
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "고급 향수 유리용기",       
+            "image": "https://degrasse.co.kr/web/product/big/201805/1228_shop1_1526893273088.jpg",
+            "package_category": 1
+        }
+    }
+]
