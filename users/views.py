@@ -6,7 +6,7 @@ from rest_framework.generics import get_object_or_404
 
 from users.serializers import (
     CustomTokenObtainPairSerializer,
-    UserSerializer, ProfileSerializer, ProfileEditSerializer
+    UserSerializer, MypageSerializer, ProfileEditSerializer
     )
 from users.models import User
 
@@ -117,10 +117,10 @@ class UserPasswordResetConfirmView(PasswordResetConfirmView):
 class UserPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = "password_reset_complete.html"
 
-class ProfileView(APIView):
+class MypageView(APIView):
     def get(self, request):
         profile = get_object_or_404(User, username=request.user.username)
-        serializer = ProfileSerializer(profile)
+        serializer = MypageSerializer(profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def put(self, request):
