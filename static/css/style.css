@@ -1,0 +1,289 @@
+/* style.css : 공용 스타일 파일 */
+/* reset */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');@import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
+* {
+    font-family: 'Noto Sans KR', sans-serif !important;
+}
+
+.flex{
+    display: flex;
+}
+.flex-align-center{
+    align-items: center;
+}
+.visivility_hide{
+    visibility: hidden;
+}
+a, a:hover{
+    color: inherit;
+    text-decoration: unset;
+}
+
+/* header */
+header.header_sticky{
+    background: #fff;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 0 8px rgb(255 255 255 / 5%);
+    /* border-bottom: 1px solid #e5e7eb; */
+    font-weight: 600;
+}
+
+header nav{
+    padding: 0 16px;
+}
+
+header nav .flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header nav .navbar_logo img{
+    height: 40px;
+
+}
+header nav ul.navbar_menu{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 60px;
+}
+header nav ul.navbar_menu button{
+    background: transparent;
+    border:0;
+}
+header nav ul.navbar_menu > li > a, header nav ul.navbar_menu > li > button, header nav ul.navbar_menu > li .dropdown>button{
+    display: block;
+    line-height: 20px;
+    padding: 0px 20px;
+}
+header nav ul.navbar_menu > li > button.btn:hover, header nav ul.navbar_menu > li .dropdown>button:hover, header nav ul.navbar_menu > li .dropdown>button:active, header nav ul.navbar_menu > li .dropdown>button:focus-visible, .btn:first-child:active{
+    background: transparent;
+    border-color: transparent;
+}
+header nav ul.navbar_menu > li .dropdown-toggle::after{
+    display: none;
+}
+header nav .my_money{
+    border: solid 1px #7E50FF;
+    font-size: 0.8em;
+    color: #7E50FF;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 4px 8px;
+    min-width: 100px;
+    font-weight: normal;
+}
+header nav .my_money > i{
+    margin-right: 16px;
+}
+
+
+header nav .my_profile{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+header nav .my_profile img{
+    width: 100%;
+    height: 100%;
+    display: table;
+    border-radius: 50%;
+}
+
+/* wrap */
+.wrap{
+    position: relative;;
+    padding: 16px 0;
+    min-height: calc(100vh - 112px);
+    padding-top: 60px;
+    min-height: 100vh;
+}
+
+
+/* sidenav */
+.sidenav{
+    width: 250px;
+    min-height: 250px;
+    position: absolute;
+    right:0;
+    top: 32px;
+}
+.main{
+    padding: 32px 16px;
+    margin-right: 250px;
+
+}
+/* section */
+.sec{
+    margin-bottom: 50px;
+}
+.sec .section_header{
+    margin-bottom: 32px;
+    text-align: center;
+}
+.sec .section_title{
+    font-size: 1.5em;
+    font-weight: 700;
+    display: inline-block;
+}
+.highlight{
+    position: relative;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.highlight:before{
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0px;
+    height: 16px;
+    width: 0;
+    background-color: rgba(30,215,96,0.25);
+    transition: 0.4s;
+}
+.highlight:hover:before{
+    width: calc(100% + 4px);
+    transition: 0.2s;
+}
+
+/* music_card */
+.music_card{
+    cursor: pointer;
+    background: #181818;
+    /* border: solid 1px rgb(219, 219, 219); */
+    border-radius : 8px;
+    margin-bottom: 16px;
+    line-height: 1.26;
+    overflow: hidden;
+    padding: 16px;
+    transition: 0.4s;
+
+}
+.music_card:hover{
+    /* box-shadow: 2px 5px 10px rgba(0,0,0,0.1); */
+    transition: 0.4s;
+    background-color: #282828;
+}
+.music_card .card_header{
+    margin-bottom: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.music_card .music_album_images{
+    vertical-align: unset;
+}
+.music_card .music_album_images >img{
+    width: 100%;
+    height: auto;
+}
+.music_card .card_content{
+    width: 100%;
+}
+.music_card .card_content p{
+    margin-bottom: 8px;
+}
+.music_card .card_content p.music_card_title{
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    /* word-break: keep-all; */
+}
+.music_card .card_content .music_card_title{
+    font-weight: 600;
+    font-size : 1em;
+}
+.music_card .card_content .music_card_artist{
+    color: #a7a7a7;
+    font-size: 0.8em;
+}
+.music_card .card_content .music_card_grade{
+    color: #1ED760
+}
+
+
+
+/* profile_list_card  */
+.profile_image{
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: block;
+    flex: 0 0 auto;
+    overflow: hidden;
+    position: relative;
+    max-width: 64px;
+    max-height: 64px;
+}
+.profile_image>img{
+    width: 100%;
+    object-fit: cover;
+}
+.profile_list_card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.opcity7{
+    opacity: 0.7;
+}
+.profile_list_card.opcity7:hover{
+    opacity: 1;
+    transition: 0.2s;
+}
+.profile_list_card .card_body{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.profile_list_card .profile_image{
+    max-width: 30px;
+    max-height: 30px;
+}
+.profile_list_card .profile_meta{
+    width: 100%;
+    padding-left: 12px ;
+    line-height: 1.36;
+    font-size: 0.9em;
+}
+.profile_list_card .btn_follow{
+    color: #1ED760;
+}
+.profile_list_card .btn_follow_2{
+    color: #000;
+    background: #1ED760;
+    border : solid 1px #1ED760;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    text-align: center;
+    min-width: 75px;
+    display: inline-block;
+}
+.profile_list_card .btn_follow_2.btn_following{
+    color: #fff;
+    background: #a7a7a7;
+    border : solid 1px #a7a7a7;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+}
+.profile_list_card .btn_follow_remove{
+    color: #fff;
+    border : solid 1px #fff;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    text-align: center;
+    min-width: 75px;
+    display: inline-block;
+}
