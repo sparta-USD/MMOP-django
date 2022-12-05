@@ -25,7 +25,8 @@ environ.Env.read_env(
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-SECRET_KEY = env("SECRET_KEY")
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'users',
     'perfume',
     'custom_perfume',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -59,6 +61,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -132,10 +135,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATIC_URL = 'static/'
-STATICFILES_DIRS=[
+# STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
 
 # Media files
 # https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-MEDIA_ROOT

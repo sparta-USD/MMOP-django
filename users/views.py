@@ -118,13 +118,14 @@ class UserPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = "password_reset_complete.html"
 
 class ProfileView(APIView):
-    def get(self, request, username):
-        profile = get_object_or_404(User, username=username)
+    def get(self, request):
+        profile = get_object_or_404(User, username=request.user.username)
         serializer = ProfileSerializer(profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-    def put(self, request, username):
-        profile = get_object_or_404(User, username=username)
+    def put(self, request):
+        profile = get_object_or_404(User, username=request.user.username)
+        print(request)
         serializer = ProfileEditSerializer(profile, data=request.data, partial = True)
         if serializer.is_valid():
             serializer.save()
