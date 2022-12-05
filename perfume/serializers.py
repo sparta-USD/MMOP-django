@@ -10,6 +10,7 @@ class PerfumeSerializer(serializers.ModelSerializer):
 
 class ReviewSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
+    perfume = PerfumeSerializer()
     
     def get_user(self, obj):
         return obj.user.username
@@ -21,7 +22,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 class ReviewCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ("user", "good_content", "bad_content", "grade", "image")
+        fields = ("user", "perfume", "good_content", "bad_content", "grade", "image")
         
 class ReviewUpdateSerializer(serializers.ModelSerializer):
     class Meta:

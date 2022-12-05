@@ -40,20 +40,20 @@ class PerfumeDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# Create your views here.
 class ReviewView(APIView):
     # 리뷰 목록 조회하기
-    def get(self, request): # perfume_id 추가 필요!
+    def get(self, request, perfume_id): 
         reviews = Review.objects.all().order_by('-created_at')
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     # 리뷰 작성하기
-    def post(self, request):
+    def post(self, request, perfume_id):
         # request_user = request.user     # 로그인한 유저
         request_user = get_user_model().objects.get(id=1)   # 로그인한 유저(임시 1번 유저)
-        request.data.update({'user': request_user.id})
+        request.data.update({'user': request_user.id, 'perfume':perfume_id})
+        
         serializer = ReviewCreateSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
