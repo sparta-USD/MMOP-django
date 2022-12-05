@@ -27,7 +27,7 @@ class Perfume(models.Model):
     
 class Review(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="user_reviews")
-    # perfume = models.ForeignKey(Perfume, on_delete=models.CASCADE, related_name="perfume_reviews")
+    perfume = models.ForeignKey(Perfume, on_delete=models.CASCADE, related_name="perfume_reviews")
     good_content = models.TextField()
     bad_content = models.TextField()
     grade = models.IntegerField(default=5, null=False, blank=True)
