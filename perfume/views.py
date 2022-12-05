@@ -24,37 +24,36 @@ class PerfumeView(APIView):
 
 class PerfumeDetailView(APIView):
     def get(self, request, id):
-        target_parfume = get_object_or_404(Perfume ,id=id)
-        serializer = PerfumeSerializer(target_parfume)
+        target_perfume = get_object_or_404(Perfume ,id=id)
+        serializer = PerfumeSerializer(target_perfume)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, id):
-        target_parfume = get_object_or_404(Perfume ,id=id)
-        serializer = PerfumeSerializer(target_parfume, data=request.data)
+        target_perfume = get_object_or_404(Perfume ,id=id)
+        serializer = PerfumeSerializer(target_perfume, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, id):
-        target_parfume = get_object_or_404(Perfume ,id=id)
-        target_parfume.delete()
+        target_perfume = get_object_or_404(Perfume ,id=id)
+        target_perfume.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class PerfumeRandomView(APIView):
     def get(self, request):
-        limit = int(request.data.get("limit",20))
-    
+        limit = int(request.data.get("limit",20)) # 데이터 없으면 limit = 20
+
         max_id = Perfume.objects.aggregate(max_id=Max('id'))['max_id']
-        print(max_id)
-        prfume_random_list = []
-        while len(prfume_random_list) < limit:
+        perfume_random_list = []
+        while len(perfume_random_list) < limit: # 무조건 limit 갯수만큼 random 추출
             random_index = random.randint(1, max_id)
-            prfume = Perfume.objects.get(id=random_index)
-            if prfume:
-                serializer = PerfumeSerializer(prfume)
-                prfume_random_list.append(serializer.data)
-        return Response(prfume_random_list, status=status.HTTP_200_OK)
+            perfume = Perfume.objects.get(id=random_index)
+            if perfume:
+                serializer = PerfumeSerializer(perfume)
+                perfume_random_list.append(serializer.data)
+        return Response(perfume_random_list, status=status.HTTP_200_OK)
 
 # Create your views here.
 class ReviewView(APIView):
