@@ -6,6 +6,8 @@ from .models import Perfume, Review
 from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.db.models import Max
+import random
 
 class PerfumeView(APIView):
     def get(self, request):
@@ -39,6 +41,20 @@ class PerfumeDetailView(APIView):
         target_parfume.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class PerfumeRandomView(APIView):
+    def get(self, request):
+        limit = int(request.data.get("limit",20))
+    
+        max_id = Perfume.objects.aggregate(max_id=Max('id'))['max_id']
+        print(max_id)
+        prfume_random_list = []
+        while len(prfume_random_list) < limit:
+            random_index = random.randint(1, max_id)
+            prfume = Perfume.objects.get(id=random_index)
+            if prfume:
+                serializer = PerfumeSerializer(prfume)
+                prfume_random_list.append(serializer.data)
+        return Response(prfume_random_list, status=status.HTTP_200_OK)
 
 # Create your views here.
 class ReviewView(APIView):
