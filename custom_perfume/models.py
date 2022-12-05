@@ -35,6 +35,7 @@ class Package(models.Model):
 
 class NoteCategory(models.Model):
     name = models.CharField(max_length=100)
+    kor_name = models.CharField(max_length=100)
 
 class Note(models.Model):
     name = models.CharField(max_length=100)
