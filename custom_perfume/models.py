@@ -40,7 +40,7 @@ class Note(models.Model):
     name = models.CharField(max_length=100)
     kor_name = models.CharField(max_length=100)
     image = models.ImageField(upload_to=upload_to_note_image, max_length=255, null=True)
-    note_category = models.ForeignKey(NoteCategory, on_delete=models.CASCADE)
+    note_category = models.ForeignKey(NoteCategory, on_delete=models.CASCADE, related_name='note01')
     
 class CustomPerfume(models.Model):
     title = models.CharField(max_length=100)
