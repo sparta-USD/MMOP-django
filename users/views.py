@@ -11,7 +11,7 @@ from users.serializers import (
 from users.models import User
 
 # 메일링
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
 
 from django.contrib.auth.forms import PasswordResetForm
 
@@ -55,3 +55,7 @@ class UserPasswordResetView(PasswordResetView):
             return super().form_valid(form)
         else:
             return render(self.request, 'password_reset_done_fail.html')
+
+# 메일 전송 여부 확인            
+class UserPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'password_reset_done.html' 
