@@ -1,15 +1,22 @@
 import requests
+import pandas as pd  
 from bs4 import BeautifulSoup
 import json
 
-file_path = "./static/json/perfume.json"
+perfume = []
 
 # start = 26120000
 end = 26192510
-start = end - 1000
+start = end - 3000
 
-perfume = []
-for num in range(26192367, 26192367+1):
+file_path = "./static/json/"
+
+with open(file_path+"notes.json", 'r') as file:
+    notes_db = json.load(file)
+    df_notes = pd.DataFrame(notes_db, columns = ['fields']) # json 데이터로 pandas 생성
+    df_notes = pd.DataFrame(list(df_notes['fields'].map(lambda x : {d:x[d] for d in x}))) # 안에 있는 fields로 pandas 생성
+
+for num in range(start, end):
     req = requests.get(f'https://basenotes.com/fragrances/{num}')
     soup = BeautifulSoup(req.text, 'html.parser')
     body = soup.select_one(".p-body-main")
@@ -37,9 +44,17 @@ for num in range(26192367, 26192367+1):
             for note in notes:
                 if note.select_one("a"):
                     note_name = note.select_one("a").text
+                    note_origin_id = note.select_one("a").get("href").split('/')[-1]
                 else:
                     note_name = note.text.replace("\t","").replace("\n","")
-                notes_data[note_type].append(note_name)
+                    note_origin_id = 0
+
+                # 향DB에 있는 향만 향수 notes필드에 추가
+                if(not df_notes.loc[df_notes['name'] == note_name].empty):
+                    note_id = df_notes.loc[df_notes['name'] == note_name].index.to_list()[0]+1 # 향 이름으로 검색 후 index 값 추출
+                    notes_data[note_type].append(note_id)
+                
+        # 크롤링향 향 데이터  
         result = {
             "origin_id": num,
             "image": perfume_thumbnail,
@@ -53,11 +68,11 @@ for num in range(26192367, 26192367+1):
             "base_notes" : notes_data['Base'],
             "none_notes" : notes_data['None'],
         }
-
         new_data = {"model": "perfume.perfume"}
         new_data["fields"] = result
-        print(new_data)
         perfume.append(new_data)
-    
-with open(file_path, 'w', encoding="utf-8") as outfile:
+
+# 크롤링한 향수 데이터 json 파일에 저장.
+perfume_file = f"perfum.json"
+with open(file_path+perfume_file, 'w', encoding="utf-8") as outfile:
     json.dump(perfume, outfile, ensure_ascii=False, indent=4)
