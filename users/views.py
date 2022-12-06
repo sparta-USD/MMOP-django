@@ -11,12 +11,19 @@ from users.serializers import (
 from users.models import User
 
 # 메일링
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView
 
 from django.contrib.auth.forms import PasswordResetForm
 
 from django.urls import reverse_lazy
 from django.shortcuts import render
+
+# 비밀번호 재설정
+import re
+from django import forms
+from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
+from django.contrib.auth import password_validation
 
 class SignupView(APIView):
     def post(self, request):
@@ -59,3 +66,57 @@ class UserPasswordResetView(PasswordResetView):
 # 메일 전송 여부 확인            
 class UserPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'password_reset_done.html' 
+
+# 비밀번호 재설정
+# SetPasswordForm 커스터마이징
+class UserSetPasswordForm(forms.Form):
+    error_messages = {
+        "password_mismatch": _("The two password fields didn’t match."),
+        "password_necessary":_("비밀번호는 8-20자이며 최소 하나 이상의 대/소문자, 숫자, 특수문자가 필요합니다."),
+    }
+    new_password1 = forms.CharField(
+        label=_("New password"),
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        strip=False,
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    new_password2 = forms.CharField(
+        label=_("New password confirmation"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+    )
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super().__init__(*args, **kwargs)
+
+    def clean_new_password2(self):
+        correct_password = re.compile("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,21}$")
+        password_input = correct_password.match(self.cleaned_data.get("new_password1", ""))
+        password1 = self.cleaned_data.get("new_password1")
+        password2 = self.cleaned_data.get("new_password2")
+        if password1 and password2:
+            if password1 != password2:
+                raise ValidationError(
+                    self.error_messages["password_mismatch"],
+                    code="password_mismatch",
+                )
+            # 정규표현식
+            if password_input == None:
+                raise ValidationError(
+                    self.error_messages["password_necessary"],
+                    code="password_necessary",
+                )
+
+        password_validation.validate_password(password2, self.user)
+        return password2
+    
+    def save(self, commit=True):
+        password = self.cleaned_data["new_password1"]
+        self.user.set_password(password)
+        if commit:
+            self.user.save()
+        return self.user
+
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = "password_reset_confirm.html"
+    form_class = UserSetPasswordForm
