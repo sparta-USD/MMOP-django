@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import json
 
 perfume = []
+new_notes = []
 
 # start = 26120000
 end = 26192510
@@ -15,6 +16,21 @@ with open(file_path+"notes.json", 'r') as file:
     notes_db = json.load(file)
     df_notes = pd.DataFrame(notes_db, columns = ['fields']) # json 데이터로 pandas 생성
     df_notes = pd.DataFrame(list(df_notes['fields'].map(lambda x : {d:x[d] for d in x}))) # 안에 있는 fields로 pandas 생성
+
+def append_new_note(note_name,note_origin_id=0):
+    new_note_data = {
+        "name": note_name,
+        "kor_name": "",            
+        "image": "",
+        "note_category": None
+    }
+    new_note = {"model": "custom_perfume.note"}
+    new_note["fields"] = new_note_data
+    new_notes.append(new_note)
+
+    # note pandas에도 추가
+    df_notes.loc[df_notes.shape[0]] = list(new_note_data.values())
+    return df_notes.shape[0]
 
 for num in range(start, end):
     req = requests.get(f'https://basenotes.com/fragrances/{num}')
@@ -51,9 +67,11 @@ for num in range(start, end):
 
                 # 향DB에 있는 향만 향수 notes필드에 추가
                 if(not df_notes.loc[df_notes['name'] == note_name].empty):
-                    note_id = df_notes.loc[df_notes['name'] == note_name].index.to_list()[0]+1 # 향 이름으로 검색 후 index 값 추출
-                    notes_data[note_type].append(note_id)
-                
+                    note_id = df_notes.loc[df_notes['name'] == note_name].index.to_list()[0] +1
+                else:
+                    note_id = append_new_note(note_name,note_origin_id) # 기존 향 DB에 없으면 향 데이터 추가
+
+                notes_data[note_type].append(note_id)
         # 크롤링향 향 데이터  
         result = {
             "origin_id": num,
@@ -70,9 +88,15 @@ for num in range(start, end):
         }
         new_data = {"model": "perfume.perfume"}
         new_data["fields"] = result
+        print(new_data)
         perfume.append(new_data)
 
 # 크롤링한 향수 데이터 json 파일에 저장.
-perfume_file = f"perfum.json"
+perfume_file = f"perfume.json"
 with open(file_path+perfume_file, 'w', encoding="utf-8") as outfile:
     json.dump(perfume, outfile, ensure_ascii=False, indent=4)
+
+# 크롤링한 추가 향 데이터 json 파일에 저장.
+notes_file = f"new_notes.json"
+with open(file_path+notes_file, 'w', encoding="utf-8") as outfile:
+    json.dump(new_notes, outfile, ensure_ascii=False, indent=4)
