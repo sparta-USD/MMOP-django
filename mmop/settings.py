@@ -21,6 +21,7 @@ env = environ.Env(DEBUG=(bool, True))
 environ.Env.read_env(
     env_file=os.path.join(BASE_DIR, '.env')
 )
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 
+    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
@@ -58,6 +60,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -133,12 +136,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 STATIC_URL = 'static/'
 # STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+# Media files
+# https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-MEDIA_ROOT
+MEDIA_URL = 'media/'
+MEDIA_ROOT = [
+    os.path.join(BASE_DIR, 'media'),
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -178,6 +187,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
 
 # CORS
 CORS_ALLOW_ALL_ORIGINS = True
