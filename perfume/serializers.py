@@ -23,7 +23,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 class ReviewCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ("good_content", "bad_content", "grade", "image")
+        fields = '__all__'
         
 class ReviewUpdateSerializer(serializers.ModelSerializer):
     class Meta:
