@@ -71,7 +71,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['username'] = user.username
         return token
 
-class ProfileSerializer(serializers.ModelSerializer):
+class MypageSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
