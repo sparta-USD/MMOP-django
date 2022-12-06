@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('users/', include('users.urls')),
     path('perfume/', include('perfume.urls')),
     path('custom_perfume/', include('custom_perfume.urls')),
 ]
