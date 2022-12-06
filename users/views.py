@@ -6,7 +6,7 @@ from rest_framework.generics import get_object_or_404
 
 from users.serializers import (
     CustomTokenObtainPairSerializer,
-    UserSerializer, ProfileSerializer, ProfileEditSerializer
+    UserSerializer, MypageSerializer, ProfileEditSerializer
     )
 from users.models import User
 
@@ -22,14 +22,14 @@ class SigninView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
 
-class ProfileView(APIView):
-    def get(self, request, username):
-        profile = get_object_or_404(User, username=username)
-        serializer = ProfileSerializer(profile)
+class MypageView(APIView):
+    def get(self, request):
+        profile = get_object_or_404(User, username=request.user.username)
+        serializer = MypageSerializer(profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
-    def put(self, request, username):
-        profile = get_object_or_404(User, username=username)
+
+    def put(self, request):
+        profile = get_object_or_404(User, username=request.user.username)
         serializer = ProfileEditSerializer(profile, data=request.data, partial = True)
         if serializer.is_valid():
             serializer.save()
