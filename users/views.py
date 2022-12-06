@@ -11,7 +11,7 @@ from users.serializers import (
 from users.models import User
 
 # 메일링
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
 from django.contrib.auth.forms import PasswordResetForm
 
@@ -120,3 +120,7 @@ class UserSetPasswordForm(forms.Form):
 class UserPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = "password_reset_confirm.html"
     form_class = UserSetPasswordForm
+
+# 비밀번호 재설정 완료
+class UserPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = "password_reset_complete.html"
