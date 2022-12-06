@@ -80,13 +80,12 @@ class ReviewDetailView(APIView):
     # 리뷰 수정하기
     def put(self, request, review_id): 
         review = get_object_or_404(Review, id=review_id)
-        # request_user = request.user   # 로그인한 유저
-        request_user = get_user_model().objects.get(id=1)   # 로그인한 유저(임시 1번 유저)
-        serializer = ReviewUpdateSerializer(review, data=request.data)
+        request_user = request.user 
         if request_user == review.user:
+            serializer = ReviewUpdateSerializer(review, data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializer.data, status=status.HTTP_200_OK)
+                return Response({"messages": "리뷰가 수정되었습니다!"}, status=status.HTTP_200_OK)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
@@ -95,10 +94,9 @@ class ReviewDetailView(APIView):
     # 리뷰 삭제하기
     def delete(self, request, review_id): 
         review = get_object_or_404(Review, id=review_id)
-        # request_user = request.user   # 로그인한 유저
-        request_user = get_user_model().objects.get(id=1)   # 로그인한 유저(임시 1번 유저)
+        request_user = request.user   
         if request_user == review.user :
             review.delete()
-            return Response({"messages": "삭제 되었습니다."}, status=status.HTTP_204_NO_CONTENT)
+            return Response({"messages": "리뷰가 삭제 되었습니다."}, status=status.HTTP_204_NO_CONTENT)
         else: 
             return Response("권한이 없습니다!", status=status.HTTP_403_FORBIDDEN)
