@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from users.models import User
 
-# Create your models here.
+
 class Perfume(models.Model):
     origin_id = models.IntegerField()
     image = models.CharField(max_length=256,null=True, blank=True)
@@ -26,7 +26,7 @@ class Perfume(models.Model):
 
     
 class Review(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="user_reviews")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_reviews")
     perfume = models.ForeignKey(Perfume, on_delete=models.CASCADE, related_name="perfume_reviews")
     good_content = models.TextField()
     bad_content = models.TextField()
