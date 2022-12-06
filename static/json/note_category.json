@@ -1,0 +1,97 @@
+[{
+    "pk": 1,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "citrus_smells",
+      "kor_name": "시트러스"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "fruits_vegetables_and_nuts",
+      "kor_name": "과일, 야채 및 견과류"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "flowers",
+      "kor_name": "꽃"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "white_flowers",
+      "kor_name": "흰 꽃"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "greens_herbs_and_fougeres",
+      "kor_name": "채소, 허브 및 푸제"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "spices",
+      "kor_name": "향료"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "sweets_and_gourmand_smells",
+      "kor_name": "과자와 미식가"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "woods_and_mosses",
+      "kor_name": "숲과 이끼"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "resins_and_balsams",
+      "kor_name": "수지와 발삼"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "musk_amber_animalic_smells",
+      "kor_name": "머스크, 앰버, 동물 냄새"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "beverages",
+      "kor_name": "음료수"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "custom_perfume.notecategory",
+    "fields": {
+      "name": "netural_and_synthetic_popular_and_weird",
+      "kor_name": "천연 및 합성, 인기 및 이상한"
+    }
+  }
+]

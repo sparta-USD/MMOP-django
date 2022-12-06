@@ -20,6 +20,7 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('perfume/', include('perfume.urls')),
+    path('custom_perfume/', include('custom_perfume.urls')),
 ]
 
 # static 파일 경로 설정
