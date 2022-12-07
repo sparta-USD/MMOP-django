@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from custom_perfume.models import Note
 
 # Create your models here.
 class Perfume(models.Model):
@@ -10,10 +11,10 @@ class Perfume(models.Model):
     gender = models.CharField(max_length=5,null=True, blank=True)
     price = models.FloatField(default=0)
     launch_date = models.DateField(null=True, blank=True)
-    top_notes = models.TextField(null=True, blank=True)
-    heart_notes = models.TextField(null=True, blank=True)
-    base_notes = models.TextField(null=True, blank=True)
-    none_notes = models.TextField(null=True, blank=True)
+    top_notes = models.ManyToManyField(to=Note, related_name="perfumes_top", blank=True)
+    heart_notes = models.ManyToManyField(to=Note, related_name="perfumes_heart", blank=True)
+    base_notes = models.ManyToManyField(to=Note, related_name="perfumes_base", blank=True)
+    none_notes = models.ManyToManyField(to=Note, related_name="perfumes_none", blank=True)
 
     class Meta:
         db_table = "perfume"
