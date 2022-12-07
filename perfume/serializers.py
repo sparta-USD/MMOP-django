@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Perfume
 from perfume.models import Review
+from custom_perfume.serializers import NoteSerializer
 
 # review
 class ReviewSerializer(serializers.ModelSerializer):
@@ -28,6 +29,11 @@ class ReviewUpdateSerializer(serializers.ModelSerializer):
 class PerfumeSerializer(serializers.ModelSerializer):
     perfume_reviews = ReviewSerializer(many=True)
     avg_grade = serializers.SerializerMethodField()
+    #
+    top_notes = NoteSerializer(many=True)
+    heart_notes = NoteSerializer(many=True)
+    base_notes = NoteSerializer(many=True)
+    none_notes = NoteSerializer(many=True)
     
     class Meta :
         model = Perfume
