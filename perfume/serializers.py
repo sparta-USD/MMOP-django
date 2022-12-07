@@ -1,9 +1,13 @@
 from rest_framework import serializers
 from .models import Perfume
 from perfume.models import Review
-
+from custom_perfume.serializers import NoteSerializer
 # perfume 
 class PerfumeSerializer(serializers.ModelSerializer):
+    top_notes = NoteSerializer(many=True)
+    heart_notes = NoteSerializer(many=True)
+    base_notes = NoteSerializer(many=True)
+    none_notes = NoteSerializer(many=True)
     class Meta :
         model = Perfume
         fields = "__all__"
