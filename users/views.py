@@ -1,12 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.generics import get_object_or_404
 
 from users.serializers import (
     CustomTokenObtainPairSerializer,
-    UserSerializer, MypageSerializer, ProfileEditSerializer
+    UserSerializer, MypageSerializer, ProfileEditSerializer, UserEmailSerializer
     )
 from users.models import User
 
@@ -25,6 +25,12 @@ from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth import password_validation
 
+# 이메일 인증
+from django.utils.http import urlsafe_base64_decode
+from .tokens import account_activation_token
+from django.utils.encoding import force_str
+
+
 class SignupView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
@@ -32,6 +38,27 @@ class SignupView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# 이메일 인증
+class UserEmailVaild(APIView):
+    permission_classes = (permissions.AllowAny, )
+    def get(self, request, uidb64, token):
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+
+        try:
+            if user is not None and account_activation_token.check_token(user, token):
+                user.email_valid = True
+                user.save()
+                return Response(user.email + '계정이 인증되었습니다! 로그인을 해주세요' , status=status.HTTP_200_OK)
+            else:
+                return Response('만료된 링크입니다.', status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response({'message':'땡탈락'})
+
 
 class SigninView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer

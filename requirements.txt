@@ -18,3 +18,4 @@ soupsieve==2.3.2.post1
 sqlparse==0.4.3
 tzdata==2022.7
 urllib3==1.26.13
+six==1.16.0

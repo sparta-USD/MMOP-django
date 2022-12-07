@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'users',
     'perfume',
     'custom_perfume',
+    'six',
 ]
 
 REST_FRAMEWORK = {
