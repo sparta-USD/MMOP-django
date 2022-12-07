@@ -2,12 +2,13 @@ from rest_framework import serializers
 from .models import Perfume
 from perfume.models import Review
 
+# perfume 
 class PerfumeSerializer(serializers.ModelSerializer):
     class Meta :
         model = Perfume
         fields = "__all__"
 
-
+# review
 class ReviewSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
     perfume = PerfumeSerializer()
@@ -22,7 +23,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 class ReviewCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ("user", "perfume", "good_content", "bad_content", "grade", "image")
+        fields = '__all__'
         
 class ReviewUpdateSerializer(serializers.ModelSerializer):
     class Meta:

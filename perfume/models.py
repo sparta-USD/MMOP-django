@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from custom_perfume.models import Note
 
-# Create your models here.
+
 class Perfume(models.Model):
     origin_id = models.IntegerField()
     image = models.CharField(max_length=256,null=True, blank=True)

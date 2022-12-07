@@ -58,16 +58,22 @@ class PerfumeRandomView(APIView):
 class ReviewView(APIView):
     # 리뷰 목록 조회하기
     def get(self, request, perfume_id): 
-        reviews = Review.objects.all().order_by('-created_at')
+        reviews = Review.objects.all().order_by('-created_at') # 리뷰 생성 순으로 조회
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     # 리뷰 작성하기
     def post(self, request, perfume_id):
-        # request_user = request.user     # 로그인한 유저
-        request_user = get_user_model().objects.get(id=1)   # 로그인한 유저(임시 1번 유저)
+        request_user = request.user
         request.data.update({'user': request_user.id, 'perfume':perfume_id})
+        
+        # user가 리뷰 작성 시 perfume_id 당 1개씩 작성 제한
+        perfume = Perfume.objects.get(id=perfume_id)
+        reviews = perfume.perfume_reviews.all() # 역참조 : related_name="perfume_reviews" 
+        for review in reviews:
+            if request_user == review.user:
+                return Response({"message": "이미 리뷰를 작성하였습니다!"}, status=status.HTTP_400_BAD_REQUEST)
         
         serializer = ReviewCreateSerializer(data=request.data)
         if serializer.is_valid():
@@ -81,13 +87,12 @@ class ReviewDetailView(APIView):
     # 리뷰 수정하기
     def put(self, request, review_id): 
         review = get_object_or_404(Review, id=review_id)
-        # request_user = request.user   # 로그인한 유저
-        request_user = get_user_model().objects.get(id=1)   # 로그인한 유저(임시 1번 유저)
-        serializer = ReviewUpdateSerializer(review, data=request.data)
+        request_user = request.user 
         if request_user == review.user:
+            serializer = ReviewUpdateSerializer(review, data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializer.data, status=status.HTTP_200_OK)
+                return Response({"messages": "리뷰가 수정되었습니다!"}, status=status.HTTP_200_OK)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
@@ -96,10 +101,9 @@ class ReviewDetailView(APIView):
     # 리뷰 삭제하기
     def delete(self, request, review_id): 
         review = get_object_or_404(Review, id=review_id)
-        # request_user = request.user   # 로그인한 유저
-        request_user = get_user_model().objects.get(id=1)   # 로그인한 유저(임시 1번 유저)
+        request_user = request.user   
         if request_user == review.user :
             review.delete()
-            return Response({"messages": "삭제 되었습니다."}, status=status.HTTP_204_NO_CONTENT)
+            return Response({"messages": "리뷰가 삭제 되었습니다."}, status=status.HTTP_204_NO_CONTENT)
         else: 
             return Response("권한이 없습니다!", status=status.HTTP_403_FORBIDDEN)
