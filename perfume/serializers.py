@@ -5,6 +5,7 @@ from perfume.models import Review
 # review
 class ReviewSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
+    
     def get_user(self, obj):
         return obj.user.username
     
@@ -26,6 +27,11 @@ class ReviewUpdateSerializer(serializers.ModelSerializer):
 # perfume 
 class PerfumeSerializer(serializers.ModelSerializer):
     perfume_reviews = ReviewSerializer(many=True)
+    avg_grade = serializers.SerializerMethodField()
+    
     class Meta :
         model = Perfume
         fields = "__all__"
+        
+    def get_avg_grade(self, obj):
+        return obj.avg_grade()
