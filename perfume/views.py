@@ -4,6 +4,8 @@ from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from .models import Perfume, Review
 from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from django.db.models import Max
 import random
 
