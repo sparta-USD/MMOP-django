@@ -52,10 +52,11 @@ class UserEmailVaild(APIView):
         try:
             if user is not None and account_activation_token.check_token(user, token):
                 user.email_valid = True
+                user.is_active = True
                 user.save()
-                return Response(user.email + '계정이 인증되었습니다! 로그인을 해주세요' , status=status.HTTP_200_OK)
+                return Response({'message':'계정이 인증되었습니다! 로그인을 해주세요'} , status=status.HTTP_200_OK)
             else:
-                return Response('만료된 링크입니다.', status=status.HTTP_400_BAD_REQUEST)
+                return Response({'message':'만료된 링크입니다'}, status=status.HTTP_400_BAD_REQUEST)
         except:
             return Response({'message':'땡탈락'})
 

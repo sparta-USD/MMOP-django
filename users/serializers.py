@@ -30,6 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
         password = user.password
         user.set_password(password)
         user.email_valid = False
+        user.is_active = False
         user.save()
 
         # 인증 이메일 전송
