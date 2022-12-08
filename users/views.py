@@ -25,6 +25,10 @@ from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth import password_validation
 
+import requests
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.conf import settings
+
 class SignupView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
@@ -128,3 +132,55 @@ class UserPasswordResetConfirmView(PasswordResetConfirmView):
 # 비밀번호 재설정 완료
 class UserPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = "password_reset_complete.html"
+    
+class KakaoSigninView(APIView):
+    def get_tokens_for_user(self, user):
+        """유저 객체를 이용한 토큰 발급해주는 함수입니다.
+
+        Args:
+            user (User.objects): 유저 객체
+
+        Returns:
+            jwt: 유저인증을 해줄 refesh토큰과 access토큰
+        """
+        refresh = RefreshToken.for_user(user)
+        refresh["username"] = user.username
+        refresh["email"] = user.email
+        return {
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+        }
+    
+    def post(self, request):
+        code = request.data["code"] # Front에서 전달받은 Kakao의 인가코드
+        if not code:
+            return Response({"message":"카카오 로그인에 실패했습니다."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 카카오 서버의 access토큰 받아오기
+        get_kakao_token_url = "https://kauth.kakao.com/oauth/token"
+        data = {
+            "grant_type" : 'authorization_code',
+            "client_id" : getattr(settings, "KAKAO_REST_API_KEY"),
+            "redirect_uri" : "http://127.0.0.1:5500/signin.html",
+            "code" : code
+            }
+        response = requests.post(get_kakao_token_url, data=data)
+        kakao_access_token = response.json().get("access_token")
+        
+        headers = {"Authorization": f"Bearer {kakao_access_token}"}
+        get_user_info_url = "https://kapi.kakao.com/v2/user/me"
+        user_info = requests.post(get_user_info_url, headers=headers)
+        
+        try:
+            user = User.objects.get(email=user_info.json()["kakao_account"]["email"])
+            tokens = self.get_tokens_for_user(user)
+        
+        except User.DoesNotExist:
+            new_user = User()
+            new_user.email = user_info.json()["kakao_account"]["email"]
+            new_user.username = user_info.json()["kakao_account"]["profile"]["nickname"]
+            new_user.set_unusable_password()
+            new_user.save()
+            tokens = self.get_tokens_for_user(new_user)
+        
+        return Response(tokens, status=status.HTTP_200_OK)
