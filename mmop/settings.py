@@ -47,7 +47,10 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
     'users',
     'perfume',
     'custom_perfume',
