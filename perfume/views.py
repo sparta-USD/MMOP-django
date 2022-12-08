@@ -7,6 +7,7 @@ from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializ
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db.models import Max
+from .recommend import recommend
 import random
 
 class PerfumeView(APIView):
@@ -54,6 +55,25 @@ class PerfumeRandomView(APIView):
                 serializer = PerfumeSerializer(perfume)
                 perfume_random_list.append(serializer.data)
         return Response(perfume_random_list, status=status.HTTP_200_OK)
+
+class PerfumeRecommendView(APIView):
+    def get(self, request):
+        is_item = int(request.data.get("perfume_id",0)) # perfume_id가 전달 여부로 추천타입 결정
+        if(is_item): #perfume_id가 있으면 해당 제품과 *유사추천*
+            target_perfume = get_object_or_404(Perfume ,id=is_item)
+            target_perfume_id = [target_perfume.id]
+            limit = 8
+        else: # perfume_id 전달이 없으면 *일반추천*
+            target_perfume_id = [17,201] # 리뷰 작성한 제품 id 리스트
+            limit = 24
+
+        # 추천 시스템
+        recommend_index_list = recommend(target_perfume_id,limit)
+        recommend_perfume = list(Perfume.objects.filter(id__in=recommend_index_list))
+        recommend_perfume = sorted(recommend_perfume, key=lambda x:recommend_index_list.index(x.id))  #recommend_index_list의 순서대로 결과값 정렬
+        serializer = PerfumeSerializer(recommend_perfume, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class ReviewView(APIView):
     # 리뷰 목록 조회하기
