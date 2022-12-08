@@ -30,6 +30,9 @@ class PerfumeSerializer(serializers.ModelSerializer):
     perfume_reviews = ReviewSerializer(many=True)
     avg_grade = serializers.SerializerMethodField()
     #
+    likes = serializers.StringRelatedField(many=True)
+    likes_count = serializers.SerializerMethodField()
+    #
     top_notes = NoteSerializer(many=True)
     heart_notes = NoteSerializer(many=True)
     base_notes = NoteSerializer(many=True)
@@ -41,3 +44,6 @@ class PerfumeSerializer(serializers.ModelSerializer):
         
     def get_avg_grade(self, obj):
         return obj.avg_grade()
+    
+    def get_likes_count(self, obj):
+        return obj.likes.count()

@@ -127,3 +127,16 @@ class ReviewDetailView(APIView):
             return Response({"messages": "리뷰가 삭제 되었습니다."}, status=status.HTTP_204_NO_CONTENT)
         else: 
             return Response("권한이 없습니다!", status=status.HTTP_403_FORBIDDEN)
+        
+
+# 찜하기
+class LikeView(APIView):
+    def post(self, request, perfume_id):
+        perfume = get_object_or_404(Perfume, id=perfume_id)
+        request_user = request.user  
+        if request_user in perfume.likes.all():
+            perfume.likes.remove(request_user)
+            return Response({"messages": "찜 목록에서 삭제되었습니다!"}, status=status.HTTP_200_OK)
+        else:
+            perfume.likes.add(request_user)
+            return Response({"messages": "찜 목록에서 추가되었습니다!"}, status=status.HTTP_200_OK)

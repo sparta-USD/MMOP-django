@@ -15,6 +15,7 @@ class Perfume(models.Model):
     heart_notes = models.ManyToManyField(to=Note, related_name="perfumes_heart", blank=True)
     base_notes = models.ManyToManyField(to=Note, related_name="perfumes_base", blank=True)
     none_notes = models.ManyToManyField(to=Note, related_name="perfumes_none", blank=True)
+    likes = models.ManyToManyField(to=get_user_model(), related_name="like_perfume", blank=True)
 
     class Meta:
         db_table = "perfume"
