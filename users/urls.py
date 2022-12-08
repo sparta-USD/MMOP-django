@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
 from users import views
 from django.contrib.auth import views as auth_views
 
-app_name = 'users'
+
 
 urlpatterns = [
     path('signup/', views.SignupView.as_view(), name='signup'),
