@@ -42,9 +42,10 @@ class Perfume(models.Model):
 class Review(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="user_reviews")
     perfume = models.ForeignKey(Perfume, on_delete=models.CASCADE, related_name="perfume_reviews")
-    good_content = models.TextField()
-    bad_content = models.TextField()
+    good_content = models.TextField(default="",blank=True)
+    bad_content = models.TextField(default="",blank=True)
     grade = models.FloatField(default=5, null=False, blank=True)
+    survey = models.BooleanField(default=False, blank=True)
     image = models.ImageField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
