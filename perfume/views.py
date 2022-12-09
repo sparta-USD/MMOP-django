@@ -119,16 +119,17 @@ class ReviewView(APIView):
     # 리뷰 작성하기
     def post(self, request, perfume_id):
         request_user = request.user
-        request.data.update({'user': request_user.id, 'perfume':perfume_id})
+        data = request.data.dict()
+        data.update({'user': request_user.id, 'perfume':perfume_id})
         
         # user가 리뷰 작성 시 perfume_id 당 1개씩 작성 제한
         perfume = Perfume.objects.get(id=perfume_id)
-        reviews = perfume.perfume_reviews.all() # 역참조 : related_name="perfume_reviews" 
+        reviews = perfume.perfume_reviews.all() # 역참조 : related_name="perfume_reviews"
         for review in reviews:
             if request_user == review.user:
                 return Response({"message": "이미 리뷰를 작성하였습니다!"}, status=status.HTTP_400_BAD_REQUEST)
         
-        serializer = ReviewCreateSerializer(data=request.data)
+        serializer = ReviewCreateSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
