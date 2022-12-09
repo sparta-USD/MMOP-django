@@ -26,3 +26,4 @@ sqlparse==0.4.3
 tzdata==2022.7
 threadpoolctl==3.1.0
 urllib3==1.26.13
+six==1.16.0

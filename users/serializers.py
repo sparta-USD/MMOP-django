@@ -4,6 +4,18 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from users.models import User
 import re
 
+from django.shortcuts import render, redirect
+
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+
+from .tokens import account_activation_token
+from django.core import mail
+from django.conf import settings
+from django.utils.html import strip_tags
 
 class UserSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(
@@ -12,14 +24,31 @@ class UserSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = User
-        fields = ['email', 'username', 'password', 'password2', 'phone_number']
+        fields = ['email', 'email_valid', 'username', 'password', 'password2', 'phone_number']
         
     def create(self, validated_data):
         del(validated_data['password2'])
         user = super().create(validated_data)
         password = user.password
         user.set_password(password)
+        user.email_valid = False
+        user.is_active = False
         user.save()
+
+
+        # 인증 이메일 전송
+        
+        message = render_to_string('email_valid.html', {
+            'user': user,
+            'domain': 'http://127.0.0.1:8000',
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'token': account_activation_token.make_token(user),
+        })
+        plain_message = strip_tags(message)
+        mail_subject = "MMOP 이메일 인증 링크 보내드립니다"
+        to_email = user.email
+        mail.send_mail(mail_subject, plain_message, settings.EMAIL_HOST_USER, [to_email], html_message=message)
+
         return user
     
     def validate_phone_number(self, value):
@@ -60,6 +89,7 @@ class UserSerializer(serializers.ModelSerializer):
                     "message" : "비밀번호가 일치하지 않습니다."
                 })
         return attrs
+    
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -81,4 +111,3 @@ class ProfileEditSerializer(serializers.ModelSerializer):
         model = User
         fields=("username", "password", "phone_number", "email")
 
-    
