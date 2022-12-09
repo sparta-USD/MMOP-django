@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from .models import Perfume, Review
-from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer
+from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db.models import Max
@@ -75,6 +75,39 @@ class PerfumeRecommendView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class SurveyView(APIView):
+    # 내가 작성한 향수추천 설문조사 조회
+    def get(self,request):
+        request_user = get_object_or_404(get_user_model(), id=request.user.id)
+        
+        reviews = Review.objects.filter(
+            user=request_user, 
+            survey=True
+        )
+        serializer = SurveySerializer(reviews, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # 향수 추천을 위한 설문조사 작성하기
+    def post(self, request):    
+        request_user = get_object_or_404(get_user_model(), id=request.user.id)
+
+        survey_list = request.data['perfume_id']
+        survey_perfumes = Perfume.objects.filter(id__in=survey_list).all()
+        survey_dict=[]
+        for perfume in survey_perfumes:
+            review = {
+                'user': request_user.id,
+                'perfume': perfume.id,
+                'survey':True
+            }
+            survey_dict.append(review)
+        serializer = SurveySerializer(data=survey_dict, many=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class ReviewView(APIView):
     # 리뷰 목록 조회하기
     def get(self, request, perfume_id): 
@@ -101,6 +134,7 @@ class ReviewView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
         
         
 class ReviewDetailView(APIView):

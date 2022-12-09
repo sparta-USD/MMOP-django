@@ -24,6 +24,24 @@ class ReviewUpdateSerializer(serializers.ModelSerializer):
         model = Review
         fields = ('good_content', 'bad_content', 'grade', 'image')
 
+class SurveySerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        reviews = Review.objects.filter(
+            user = validated_data['user'], 
+            perfume=validated_data['perfume']
+        )
+        if reviews: # 해당 리뷰 남긴 향수에 대해서 설문조사를 남긴 경우
+            instance = reviews[0]
+            instance.survey = validated_data.get('survey',instance.survey)
+            instance.save()
+            return instance
+        else: # 해당 새로운 향수에 대해서 설문조사를 남긴 경우
+            return Review.objects.create(**validated_data)
+
+    class Meta:
+        model = Review
+        fields = ('id','user','perfume','grade','survey')
+
 
 # perfume 
 class PerfumeSerializer(serializers.ModelSerializer):
