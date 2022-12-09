@@ -165,11 +165,16 @@ class KakaoSigninView(APIView):
             "code" : code
             }
         response = requests.post(get_kakao_token_url, data=data)
-        kakao_access_token = response.json().get("access_token")
+        if response.status_code != 200:
+            return Response(response.json(), response.status_code)
         
+        # 카카오 유저의 정보 받아오기
+        kakao_access_token = response.json().get("access_token")
         headers = {"Authorization": f"Bearer {kakao_access_token}"}
         get_user_info_url = "https://kapi.kakao.com/v2/user/me"
         user_info = requests.post(get_user_info_url, headers=headers)
+        if user_info.status_code != 200:
+            return Response(user_info.json(), response.status_code)
         
         try:
             user = User.objects.get(email=user_info.json()["kakao_account"]["email"])
