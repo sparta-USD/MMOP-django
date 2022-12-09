@@ -90,10 +90,6 @@ class UserSerializer(serializers.ModelSerializer):
                 })
         return attrs
     
-class UserEmailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ("username", "email", "email_valid")
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):

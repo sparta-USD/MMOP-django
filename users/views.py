@@ -6,7 +6,7 @@ from rest_framework.generics import get_object_or_404
 
 from users.serializers import (
     CustomTokenObtainPairSerializer,
-    UserSerializer, MypageSerializer, ProfileEditSerializer, UserEmailSerializer
+    UserSerializer, MypageSerializer, ProfileEditSerializer
     )
 from users.models import User
 
@@ -40,12 +40,12 @@ class SignupView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # 이메일 인증
-class UserEmailVaild(APIView):
-    permission_classes = (permissions.AllowAny, )
+class UserEmailVaildView(APIView):
+    permission_classes = (permissions.AllowAny, )     
     def get(self, request, uidb64, token):
         try:
             uid = force_str(urlsafe_base64_decode(uidb64))
-            user = User.objects.get(pk=uid)
+            user = User.objects.get(id=uid)
         except(TypeError, ValueError, OverflowError, User.DoesNotExist):
             user = None
 
@@ -54,11 +54,16 @@ class UserEmailVaild(APIView):
                 user.email_valid = True
                 user.is_active = True
                 user.save()
-                return Response({'message':'계정이 인증되었습니다! 로그인을 해주세요'} , status=status.HTTP_200_OK)
+                user_data = {
+                    "username":user.username,
+                    "email":user.email,
+                    "email_valid":user.email_valid
+                }
+                return Response(user_data , status=status.HTTP_200_OK)
             else:
-                return Response({'message':'만료된 링크입니다'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(user_data, status=status.HTTP_400_BAD_REQUEST)
         except:
-            return Response({'message':'땡탈락'})
+            return Response(user_data)
 
 
 class SigninView(TokenObtainPairView):
