@@ -15,6 +15,7 @@ class Perfume(models.Model):
     heart_notes = models.ManyToManyField(to=Note, related_name="perfumes_heart", blank=True)
     base_notes = models.ManyToManyField(to=Note, related_name="perfumes_base", blank=True)
     none_notes = models.ManyToManyField(to=Note, related_name="perfumes_none", blank=True)
+    likes = models.ManyToManyField(to=get_user_model(), related_name="like_perfume", blank=True)
 
     class Meta:
         db_table = "perfume"
@@ -24,7 +25,19 @@ class Perfume(models.Model):
 
     def __str__(self):
         return self.title
-
+    
+    # perfume의 평균 grade 구하기
+    def avg_grade(self):
+        reviews = self.perfume_reviews.all() # Review 역참조
+        sum_grade = 0
+        if reviews:
+            for review in reviews:
+                sum_grade += review.grade
+            avg_grade = sum_grade / len(reviews)
+            avg_grade = round(avg_grade, 1)
+            return avg_grade
+        else: # 리뷰가 없다면
+            return 0
     
 class Review(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="user_reviews")

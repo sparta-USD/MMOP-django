@@ -17,4 +17,5 @@ urlpatterns = [
     path('password_reset_confirm/<uidb64>/<token>/', views.UserPasswordResetConfirmView.as_view(), name="password_reset_confirm"),
     path('password_reset_complete/', views.UserPasswordResetCompleteView.as_view(), name="password_reset_complete"),
     path('', views.MypageView.as_view(), name='mypage'),
+    path('oauth/callback/kakao/', views.KakaoSigninView.as_view(), name='kakao_callback'),
 ]
