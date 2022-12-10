@@ -1,3 +1,5 @@
+import os
+from uuid import uuid4
 from django.db import models
 from django.contrib.auth import get_user_model
 from custom_perfume.models import Note
@@ -39,6 +41,14 @@ class Perfume(models.Model):
         else: # 리뷰가 없다면
             return 0
     
+    
+def rename_reviewimage(instance, filename):
+    upload_to = f'perfume/reviewimage/'
+    ext = filename.split('.')[-1]
+    uuid = uuid4().hex
+    filename = '{}.{}'.format(uuid, ext)
+    return os.path.join(upload_to, filename)
+
 class Review(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="user_reviews")
     perfume = models.ForeignKey(Perfume, on_delete=models.CASCADE, related_name="perfume_reviews")
@@ -46,7 +56,7 @@ class Review(models.Model):
     bad_content = models.TextField(default="",blank=True)
     grade = models.FloatField(default=5, null=False, blank=True)
     survey = models.BooleanField(default=False, blank=True)
-    image = models.ImageField(upload_to="", null=True)
+    image = models.ImageField(upload_to=rename_reviewimage, max_length=255,  null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
