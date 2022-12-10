@@ -64,14 +64,20 @@ class PerfumeRandomView(APIView):
 class PerfumeRecommendView(APIView):
     permission_classes = [AllowAny]
     def get(self, request):
-        target_perfume_id = [17,201] # 리뷰의 pefume_id 리스트
+        target_perfume_list = Review.objects.filter(user=request.user.id, grade__range=(4.0,5.0)).values('perfume') # 평점 4.0이상으로 내가 작성한 리뷰
+        target_perfume_id = [x['perfume'] for x in target_perfume_list] # 리뷰의 pefume_id 리스트
         limit = 24
 
-        # 추천 시스템
-        recommend_index_list = recommend(target_perfume_id,limit)
-        recommend_perfume = list(Perfume.objects.filter(id__in=recommend_index_list))
-        recommend_perfume = sorted(recommend_perfume, key=lambda x:recommend_index_list.index(x.id))  #recommend_index_list의 순서대로 결과값 정렬
-        serializer = PerfumeSerializer(recommend_perfume, many=True)
+        if(target_perfume_id):
+            # 추천 시스템
+            recommend_index_list = recommend(target_perfume_id,limit)
+            recommend_perfume = list(Perfume.objects.filter(id__in=recommend_index_list))
+            recommend_perfume = sorted(recommend_perfume, key=lambda x:recommend_index_list.index(x.id))  #recommend_index_list의 순서대로 결과값 정렬
+            serializer = PerfumeSerializer(recommend_perfume, many=True)
+        else:
+            # 추천 내용이 없으면 전체목록 보여주기
+            all_perfume = Perfume.objects.all().order_by("-launch_date","brand","title")[:limit]
+            serializer = PerfumeSerializer(all_perfume, many=True)
            
         return Response(serializer.data, status=status.HTTP_200_OK)
 
