@@ -23,6 +23,9 @@ class NoteSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class CustomPerfumeSerializer(serializers.ModelSerializer):
+    note01 = NoteSerializer()
+    note02 = NoteSerializer()
+    note03 = NoteSerializer()
     class Meta:
         model = CustomPerfume
         fields = '__all__'
