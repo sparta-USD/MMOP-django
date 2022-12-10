@@ -85,7 +85,7 @@ class SurveyView(APIView):
     permission_classes = [IsAuthenticated]
     # 내가 작성한 향수추천 설문조사 조회
     def get(self,request):
-        request_user = request.user.id
+        request_user = request.user
         
         reviews = Review.objects.filter(
             user=request_user, 
@@ -96,7 +96,7 @@ class SurveyView(APIView):
 
     # 향수 추천을 위한 설문조사 작성하기
     def post(self, request):    
-        request_user = request.user.id
+        request_user = request.user
 
         survey_list = request.data['perfume_id']
         survey_perfumes = Perfume.objects.filter(id__in=survey_list).all()
