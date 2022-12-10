@@ -46,7 +46,7 @@ class Review(models.Model):
     bad_content = models.TextField(default="",blank=True)
     grade = models.FloatField(default=5, null=False, blank=True)
     survey = models.BooleanField(default=False, blank=True)
-    image = models.ImageField(null=True)
+    image = models.ImageField(upload_to="", null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

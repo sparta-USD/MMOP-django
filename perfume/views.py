@@ -57,7 +57,7 @@ class PerfumeRandomView(APIView):
         return Response(perfume_random_list, status=status.HTTP_200_OK)
 
 class PerfumeRecommendView(APIView):
-    def get(self, request):
+    def post(self, request):
         is_item = int(request.data.get("perfume_id",0)) # perfume_id가 전달 여부로 추천타입 결정
         if(is_item): #perfume_id가 있으면 해당 제품과 *유사추천*
             target_perfume = get_object_or_404(Perfume ,id=is_item)
