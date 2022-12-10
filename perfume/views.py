@@ -9,8 +9,11 @@ from django.contrib.auth import get_user_model
 from django.db.models import Max
 from .recommend import recommend
 import random
+from rest_framework.permissions import AllowAny
+from .permission import IsAuthenticated, IsAdminOrReadOnly, IsOwnerIsAdminOrReadOnly
 
 class PerfumeView(APIView):
+    permission_classes = [IsAdminOrReadOnly]
     def get(self, request):
         all_perfume = Perfume.objects.all().order_by("-launch_date","brand","title")
         serializer = PerfumeSerializer(all_perfume, many=True)
@@ -24,6 +27,7 @@ class PerfumeView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PerfumeDetailView(APIView):
+    permission_classes = [IsAdminOrReadOnly]
     def get(self, request, id):
         target_perfume = get_object_or_404(Perfume ,id=id)
         serializer = PerfumeSerializer(target_perfume)
@@ -43,6 +47,7 @@ class PerfumeDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class PerfumeRandomView(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         limit = int(request.data.get("limit",20)) # 데이터 없으면 limit = 20
 
@@ -57,6 +62,7 @@ class PerfumeRandomView(APIView):
         return Response(perfume_random_list, status=status.HTTP_200_OK)
 
 class PerfumeRecommendView(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         is_item = int(request.data.get("perfume_id",0)) # perfume_id가 전달 여부로 추천타입 결정
         if(is_item): #perfume_id가 있으면 해당 제품과 *유사추천*
@@ -76,9 +82,10 @@ class PerfumeRecommendView(APIView):
 
 
 class SurveyView(APIView):
+    permission_classes = [IsAuthenticated]
     # 내가 작성한 향수추천 설문조사 조회
     def get(self,request):
-        request_user = get_object_or_404(get_user_model(), id=request.user.id)
+        request_user = request.user.id
         
         reviews = Review.objects.filter(
             user=request_user, 
@@ -89,7 +96,7 @@ class SurveyView(APIView):
 
     # 향수 추천을 위한 설문조사 작성하기
     def post(self, request):    
-        request_user = get_object_or_404(get_user_model(), id=request.user.id)
+        request_user = request.user.id
 
         survey_list = request.data['perfume_id']
         survey_perfumes = Perfume.objects.filter(id__in=survey_list).all()
@@ -109,6 +116,7 @@ class SurveyView(APIView):
 
 
 class ReviewView(APIView):
+    permission_classes = [IsOwnerIsAdminOrReadOnly]
     # 리뷰 목록 조회하기
     def get(self, request, perfume_id): 
         reviews = Review.objects.all().order_by('-created_at') # 리뷰 생성 순으로 조회
@@ -139,6 +147,7 @@ class ReviewView(APIView):
         
         
 class ReviewDetailView(APIView):
+    permission_classes = [IsOwnerIsAdminOrReadOnly]
     # 리뷰 수정하기
     def put(self, request, review_id): 
         review = get_object_or_404(Review, id=review_id)
@@ -166,6 +175,7 @@ class ReviewDetailView(APIView):
 
 # 찜하기
 class LikeView(APIView):
+    permission_classes = [IsOwnerIsAdminOrReadOnly]
     def post(self, request, perfume_id):
         perfume = get_object_or_404(Perfume, id=perfume_id)
         request_user = request.user  
