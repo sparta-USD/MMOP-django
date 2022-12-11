@@ -37,7 +37,7 @@ class CustomPerfume(models.Model):
     note01 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note01')
     note02 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note02')
     note03 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note03')
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
+    package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='package')
     
 
     
