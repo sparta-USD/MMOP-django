@@ -61,9 +61,9 @@ def recommend_perfume_list(df,target_perfume_id,limit):
 
     target_perfume_index = list(map(lambda x:str(x-1),target_perfume_id)) # pandas column 선택을 위한 숫자배열 문자열배열로 변경 & index와 perfume id만큼 차이
     target_similarity_notes = similarity_notes[target_perfume_index].sum(axis='columns').to_numpy() # 기준아이템이 전체 아이템에 대한 코사인 유사도 합계
-    recommand_index = target_similarity_notes.argsort()[::-1][:limit+len(target_perfume_index)] # 코사인 유사도 내림차순으로 정렬된 행렬의 limit 갯수만큼 인덱스 반환
+    recommand_index = target_similarity_notes.argsort()[::-1][:limit+len(target_perfume_id)] # 코사인 유사도 내림차순으로 정렬된 행렬의 limit 갯수만큼 인덱스 반환
     # result = df.iloc[recommand_index]
-    recommand_id = [i+1 for i in recommand_index if i+1 not in target_perfume_id]  # 본인 제외 & index와 perfume id만큼 차이
+    recommand_id = [i+1 for i in recommand_index if i+1 not in target_perfume_id][0:limit]  # 본인 제외 & index와 perfume id만큼 차이
     return recommand_id
 
 
