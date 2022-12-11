@@ -15,7 +15,7 @@ from .permission import IsAuthenticated, IsAdminOrReadOnly, IsOwnerIsAdminOrRead
 class PerfumeView(APIView):
     permission_classes = [IsAdminOrReadOnly]
     def get(self, request):
-        all_perfume = Perfume.objects.all().order_by("-likes", "-launch_date","brand","title")
+        all_perfume = Perfume.objects.all().order_by("-likes", "-launch_date","brand","title")[:20]
         serializer = PerfumeSerializer(all_perfume, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
