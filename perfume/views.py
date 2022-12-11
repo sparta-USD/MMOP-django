@@ -148,6 +148,11 @@ class ReviewView(APIView):
         
 class ReviewDetailView(APIView):
     permission_classes = [IsOwnerIsAdminOrReadOnly]
+    def get(self, request, perfume_id): 
+        reviews = Review.objects.all().order_by('-created_at') # 리뷰 생성 순으로 조회
+        serializer = ReviewSerializer(reviews, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     # 리뷰 수정하기
     def put(self, request, review_id): 
         review = get_object_or_404(Review, id=review_id)
@@ -156,7 +161,7 @@ class ReviewDetailView(APIView):
             serializer = ReviewUpdateSerializer(review, data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response({"messages": "리뷰가 수정되었습니다!"}, status=status.HTTP_200_OK)
+                return Response(serializer.data, status=status.HTTP_200_OK)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:

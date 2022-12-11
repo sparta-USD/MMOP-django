@@ -2,6 +2,9 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from users.models import User
+from perfume.serializers import ReviewSerializer, PerfumeSerializer
+from custom_perfume.serializers import CustomPerfumeSerializer
+
 import re
 
 from django.shortcuts import render, redirect
@@ -102,6 +105,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
 
 class MypageSerializer(serializers.ModelSerializer):
+    user_reviews = ReviewSerializer(many=True)
+    like_perfume = PerfumeSerializer(many=True)
+    custom_perfume = CustomPerfumeSerializer(many=True)
     class Meta:
         model = User
         fields = "__all__"
