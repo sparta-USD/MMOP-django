@@ -346,14 +346,6 @@
     {
         "model": "custom_perfume.package",
         "fields": {
-            "name": "투명 롤온 용기",       
-            "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/images/2017/02/20/15/2/2e4e3b1b-86b4-469b-9487-b4aece536d80.jpg",
-            "package_category": 5
-        }
-    },
-    {
-        "model": "custom_perfume.package",
-        "fields": {
             "name": "투명 롤온 용기(검은색)",       
             "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/images/2017/02/20/15/2/2e4e3b1b-86b4-469b-9487-b4aece536d80.jpg",
             "package_category": 5
@@ -371,7 +363,7 @@
         "model": "custom_perfume.package",
         "fields": {
             "name": "투명 긴롤온 용기(은색)",       
-            "image": "https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/1f65/2a7fc39c780e9c929feaa80aec28ed40fe20631451346d0626d35dee5c5d.jpg",
+            "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/4381/aff4663c269ef85790dd3cb46edfb96f4f88e17a89bc1fb4ab70465ce4d7.jpg",
             "package_category": 5
         }
     },
@@ -387,6 +379,14 @@
         "model": "custom_perfume.package",
         "fields": {
             "name": "흰색 롤온 용기",       
+            "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/f1c9/6ea2ae9ff4a267d6f0f5af91ecd6f01f8b6dfce8b379e49f0ce22adc290b.jpg",
+            "package_category": 5
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "흰색 긴롤온 용기",       
             "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/4d2b/f8760d0acdb750871f599a359b09cd20100c0f2120525fbc9c9a00c48f57.jpg",
             "package_category": 5
         }
@@ -402,6 +402,14 @@
     {
         "model": "custom_perfume.package",
         "fields": {
+            "name": "갈색 롤온 용기(금색)",       
+            "image": "https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/d30c/23d94d9353f1d75225b7f27c1ab34df21aac2ad9136910d9d115e1365117.jpg",
+            "package_category": 5
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
             "name": "갈색 긴롤온 용기",       
             "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/c0cc/5159cecbccc80c92203d369507a3c8dded5a6bcc532f1fa162126d30656d.jpg",
             "package_category": 5
@@ -410,8 +418,16 @@
     {
         "model": "custom_perfume.package",
         "fields": {
-            "name": "은색 롤온 용기",       
+            "name": "은색 긴롤온 용기",       
             "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/6a24/6c355439622d489825b6948cac95fca3f6c3c8faf7a58ed66a3a03ad2382.jpg",
+            "package_category": 5
+        }
+    },
+    {
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "금색 롤온 용기",       
+            "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/4c13/a57f82e2ef13daacc5b1886b268cb4fdc164e0e7247e1406f2f077367f4e.jpeg",
             "package_category": 5
         }
     }
