@@ -21,7 +21,7 @@ class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
         fields = '__all__'
-        
+
 class CustomPerfumeSerializer(serializers.ModelSerializer):
     note01 = NoteSerializer()
     note02 = NoteSerializer()
@@ -29,6 +29,14 @@ class CustomPerfumeSerializer(serializers.ModelSerializer):
     package = PackageSerializer()
     creator_username = serializers.SerializerMethodField()
 
+    class Meta:
+        model = CustomPerfume
+        fields = '__all__'
+
+    def get_creator_username(self, obj):
+        return obj.creator.username
+
+class CustomPerfumeCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomPerfume
         fields = '__all__'
