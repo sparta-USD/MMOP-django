@@ -35,7 +35,12 @@ class CustomPerfumeCreateView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class CustomPerfumeDeleteView(APIView):
+class CustomPerfumeDetailView(APIView):
+    def get(self, request, custom_perfume_id):
+        custom_perfume = get_object_or_404(CustomPerfume, id=custom_perfume_id)
+        serializer = CustomPerfumeSerializer(custom_perfume)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
     def delete (self, request, custom_perfume_id):
         request_user = request.user     # 로그인한 유저
         # request_user = get_user_model().objects.get(id=1)   # 로그인한 유저(임시 1번 유저)
