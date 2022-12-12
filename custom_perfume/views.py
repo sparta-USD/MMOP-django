@@ -28,7 +28,7 @@ class CustomPerfumeCreateView(APIView):
     def post (self, request):
         request_user = request.user     # 로그인한 유저
         # request_user = get_user_model().objects.get(id=1)   # 로그인한 유저(임시 1번 유저)
-        serializer = CustomPerfumeSerializer(data=request.data)
+        serializer = CustomPerfumeCreateSerializer(data=request.data)
         request.data.update({'creator': request_user.id})
         if serializer.is_valid():
             serializer.save()
@@ -49,4 +49,3 @@ class CustomPerfumeDetailView(APIView):
             custom_perfume.delete()
             return Response({"messages": "커스텀한 향수가 삭제 되었습니다."}, status=status.HTTP_204_NO_CONTENT)
         return Response("권한이 없습니다!", status=status.HTTP_403_FORBIDDEN)
-            
