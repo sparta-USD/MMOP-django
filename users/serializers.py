@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from users.models import User
+from perfume.models import Review
 from perfume.serializers import ReviewSerializer, PerfumeSerializer
 from custom_perfume.serializers import CustomPerfumeSerializer
 
@@ -105,9 +106,16 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
 
 class MypageSerializer(serializers.ModelSerializer):
-    user_reviews = ReviewSerializer(many=True)
+    user_reviews = serializers.SerializerMethodField()
     like_perfume = PerfumeSerializer(many=True)
-    custom_perfume = CustomPerfumeSerializer(many=True)
+    custom_perfume = serializers.SerializerMethodField()
+
+    def get_user_reviews(self, obj):
+        return ReviewSerializer(obj.user_reviews.all().order_by('-created_at'), many=True).data
+
+    def get_custom_perfume(self, obj):
+        return CustomPerfumeSerializer(obj.custom_perfume.all().order_by('-created_at'), many=True).data
+
     class Meta:
         model = User
         fields = "__all__"
