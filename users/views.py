@@ -80,7 +80,6 @@ class MypageView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request):
-        print(request.data)
         profile = get_object_or_404(User, username=request.user.username)
         serializer = ProfileEditSerializer(profile, data=request.data, partial = True)
         if serializer.is_valid():
