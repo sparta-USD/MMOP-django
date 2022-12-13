@@ -1,5 +1,6 @@
 from rest_framework import serializers, exceptions
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
 
 from users.models import User
 from django.contrib.auth import get_user_model
@@ -24,6 +25,8 @@ from django.conf import settings
 from django.utils.html import strip_tags
 
 class UserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(max_length=255, validators=[UniqueValidator(queryset=get_user_model().objects.all(), message="이 이메일은 이미 사용중입니다.")])
+    username = serializers.CharField(max_length=15, validators=[UniqueValidator(queryset=get_user_model().objects.all(), message="이 닉네임은 이미 사용중입니다.")])
     password2 = serializers.CharField(
         style = {'input_type': 'password'},
         write_only = True
@@ -58,9 +61,10 @@ class UserSerializer(serializers.ModelSerializer):
         return user
     
     def validate_phone_number(self, value):
-        is_phone_number_valid = re.match("\d{3}-\d{3,4}-\d{4}", value)
-        if not is_phone_number_valid:
-            raise serializers.ValidationError("전화번호를 확인해 주세요.")
+        if value:
+            is_phone_number_valid = re.match("\d{3}-\d{3,4}-\d{4}", value)
+            if not is_phone_number_valid:
+                raise serializers.ValidationError("전화번호를 확인해 주세요.")
         return value
     
     def validate_password(self, value):
@@ -75,10 +79,10 @@ class UserSerializer(serializers.ModelSerializer):
     
     def validate(self, attrs):
         if not attrs["password"]:
-            raise serializers.ValidationError("비밀번호를 입력해 주세요.")
+            raise serializers.ValidationError({"password":"비밀번호를 입력해 주세요."})
         
         if not attrs["password"] == attrs["password2"]:
-            raise serializers.ValidationError("비밀번호가 일치하지 않습니다.")
+            raise serializers.ValidationError({"password2":"비밀번호가 일치하지 않습니다."})
         return attrs
     
 
