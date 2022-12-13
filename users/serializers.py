@@ -123,19 +123,22 @@ class MypageSerializer(serializers.ModelSerializer):
 class ProfileEditSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(
         style = {'input_type': 'password'},
+        allow_blank=True,
         write_only = True
     )
     class Meta:
         model = User
-        fields=("username", "password", "password2", "phone_number", "email")
+        fields=("username", "password","password2", "phone_number", "email")
 
     def update(self, instance, validated_data):
-        del(validated_data['password2'])
-        user = super().update(instance, validated_data)
-        password = validated_data["password"]
-        user.set_password(password)
-        user.save()
-        return user
+        instance.email = validated_data.get('email', instance.email)
+        instance.username = validated_data.get('username', instance.username)
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        password = validated_data.get('password')
+        if password:
+            instance.set_password(password)
+        instance.save()
+        return instance
 
     def validate_phone_number(self, value):
         is_phone_number_valid = re.match("\d{3}-\d{3,4}-\d{4}", value)
@@ -148,12 +151,11 @@ class ProfileEditSerializer(serializers.ModelSerializer):
 
     def validate_password(self, value):
         is_password_valid = re.match(r"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,21}$", value)
-        
         if not (8 <= len(value) <= 20):
             raise serializers.ValidationError(
                 detail={
                     "message" : "비밀번호는 8~20자 이어야 합니다."
-                })
+            })
             
         if not is_password_valid:
             raise serializers.ValidationError(
@@ -162,18 +164,14 @@ class ProfileEditSerializer(serializers.ModelSerializer):
                 })
         return value
     
-    def validate(self, attrs):
-        if not attrs["password"]:
-            raise serializers.ValidationError(
-                detail={
-                    "message" : "비밀번호를 입력해 주세요."
+    def validate (self, attrs):
+        if "password" in attrs :
+            if not attrs["password"] == attrs["password2"]:
+                raise serializers.ValidationError(
+                    detail={
+                        "message" : "비밀번호가 일치하지 않습니다."
                 })
-        
-        if not attrs["password"] == attrs["password2"]:
-            raise serializers.ValidationError(
-                detail={
-                    "message" : "비밀번호가 일치하지 않습니다."
-                })
+            del attrs["password2"]
         return attrs
 
     
