@@ -193,7 +193,7 @@ class KakaoSigninView(APIView):
         data = {
             "grant_type" : 'authorization_code',
             "client_id" : getattr(settings, "KAKAO_REST_API_KEY"),
-            "redirect_uri" : "http://127.0.0.1:5500/signin.html",
+            "redirect_uri" : "http://127.0.0.1:5500/users/signin.html",
             "code" : code
             }
         response = requests.post(get_kakao_token_url, data=data)
