@@ -124,4 +124,12 @@ class ProfileEditSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields=("username", "password", "phone_number", "email")
-
+    
+    def validate_phone_number(self, value):
+        is_phone_number_valid = re.match("\d{3}-\d{3,4}-\d{4}", value)
+        if not is_phone_number_valid:
+            raise serializers.ValidationError(
+                detail={
+                    "message" : "전화번호를 확인해 주세요."
+                })
+        return value
