@@ -34,9 +34,9 @@ class CustomPerfume(models.Model):
     logo = models.ImageField(upload_to=upload_to_custom_perfume_logo, max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='custom_perfume')
-    note01 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note01')
-    note02 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note02')
-    note03 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note03')
+    note01 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note01', null=True, blank=True)
+    note02 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note02', null=True, blank=True)
+    note03 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note03', null=True, blank=True)
     package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='package')
     
 
