@@ -31,7 +31,7 @@ class Note(models.Model):
     
 class CustomPerfume(models.Model):
     title = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to=upload_to_custom_perfume_logo, max_length=255)
+    logo = models.ImageField(upload_to=upload_to_custom_perfume_logo, max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='custom_perfume')
     note01 = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='note01', null=True, blank=True)
