@@ -204,7 +204,7 @@ SIMPLE_JWT = {
 
 # CORS
 # CORS 허용 목록에 ec2 ip를 추가합니다.
-CORS_ORIGIN_WHITELIST = ['http://3.35.166.33']
+CORS_ORIGIN_WHITELIST = ['http://3.39.240.251']
 CORS_ALLOW_ALL_ORIGINS = True
 
 # CSRF 허용 목록을 CORS와 동일하게 설정합니다.
