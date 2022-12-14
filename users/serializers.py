@@ -44,7 +44,6 @@ class UserSerializer(serializers.ModelSerializer):
         user.is_active = False
         user.save()
 
-
         # 인증 이메일 전송
         
         message = render_to_string('email_valid.html', {
@@ -64,7 +63,7 @@ class UserSerializer(serializers.ModelSerializer):
         if value:
             is_phone_number_valid = re.match("\d{3}-\d{3,4}-\d{4}", value)
             if not is_phone_number_valid:
-                raise serializers.ValidationError("전화번호를 확인해 주세요.")
+                raise serializers.ValidationError("'000-0000-0000' 형식에 맞게 번호를 입력해주세요")
         return value
     
     def validate_password(self, value):
@@ -130,15 +129,46 @@ class MypageSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class ProfileEditSerializer(serializers.ModelSerializer):
+    password2 = serializers.CharField(
+        style = {'input_type': 'password'},
+        allow_blank=True,
+        write_only = True
+    )
     class Meta:
         model = User
-        fields=("username", "password", "phone_number", "email")
-    
+        fields=("username", "password","password2", "phone_number", "email")
+
+    def update(self, instance, validated_data):
+        instance.email = validated_data.get('email', instance.email)
+        instance.username = validated_data.get('username', instance.username)
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        password = validated_data.get('password')
+        if password:
+            instance.set_password(password)
+        instance.save()
+        return instance
+
     def validate_phone_number(self, value):
         is_phone_number_valid = re.match("\d{3}-\d{3,4}-\d{4}", value)
         if not is_phone_number_valid:
-            raise serializers.ValidationError(
-                detail={
-                    "message" : "전화번호를 확인해 주세요."
-                })
+            raise serializers.ValidationError("'000-0000-0000' 형식에 맞게 번호를 입력해주세요")
         return value
+
+    def validate_password(self, value):
+        is_password_valid = re.match(r"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,21}$", value)
+        if not (8 <= len(value) <= 20):
+            raise serializers.ValidationError("비밀번호는 8~20자 이어야 합니다.")
+            
+        if not is_password_valid:
+            raise serializers.ValidationError("비밀번호는 영어 대문자, 소문자, 숫자, 특수문자(@$!%*#?&) 하나씩 꼭 포함하여야 합니다.")
+        return value
+    
+    def validate (self, attrs):
+        if "password" in attrs :
+            if not attrs["password"] == attrs["password2"]:
+                raise serializers.ValidationError("비밀번호가 일치하지 않습니다.")
+            del attrs["password2"]
+        return attrs
+
+    
+     
