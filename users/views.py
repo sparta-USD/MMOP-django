@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status, permissions
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.generics import get_object_or_404
-from pprint import pprint
+
 from users.serializers import (
     CustomTokenObtainPairSerializer,
     UserSerializer, MypageSerializer, ProfileEditSerializer
@@ -185,7 +185,6 @@ class KakaoSigninView(APIView):
     
     def post(self, request):
         request_origin = request.META["HTTP_ORIGIN"]
-        pprint(request.META)
         code = request.data["code"] # Front에서 전달받은 Kakao의 인가코드
         if not code:
             return Response({"message":"카카오 로그인에 실패했습니다."}, status=status.HTTP_400_BAD_REQUEST)
