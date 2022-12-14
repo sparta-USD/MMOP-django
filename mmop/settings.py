@@ -9,22 +9,27 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
+import environ
 from pathlib import Path
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env(DEBUG=(bool, True))
+environ.Env.read_env(
+    env_file=os.path.join(BASE_DIR, '.env')
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2nv12yf+2^cvrkj$rv@8wr7-r7xd0!5#t*xn=nfci4(&9+tai*'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -39,11 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 
+    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+    
     'users',
     'perfume',
     'custom_perfume',
+    'six',
 ]
 
 REST_FRAMEWORK = {
@@ -53,8 +61,10 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -127,13 +137,24 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+STATIC_URL = '/static/'
+# STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+# Media files
+# https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-MEDIA_ROOT
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=720),
@@ -166,3 +187,30 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+
+# CORS
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Email 전송 설정
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# 메일을 호스트하는 서버
+EMAIL_HOST = 'smtp.gmail.com'
+
+# gmail과의 통신하는 포트
+EMAIL_PORT = '587'
+
+# 발신할 이메일
+EMAIL_HOST_USER = env("SECRET_EMAIL")
+
+# 발신할 메일의 비밀번호 '구글앱비밀번호'
+EMAIL_HOST_PASSWORD = env("SECRET_PASSWORD")
+
+# TLS 보안 방법
+EMAIL_USE_TLS = True
+
+# 사이트와 관련한 자동응답을 받을 이메일 주소
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+KAKAO_REST_API_KEY = env("KAKAO_REST_API_KEY")
