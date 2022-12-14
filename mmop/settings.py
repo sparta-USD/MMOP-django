@@ -29,9 +29,9 @@ environ.Env.read_env(
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env('DEBUG','0') == '1'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -96,12 +96,27 @@ WSGI_APPLICATION = 'mmop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+POSTGRES_DB = os.environ.get('POSTGRES_DB', '')
+if POSTGRES_DB:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': POSTGRES_DB,
+            'USER': os.environ.get('POSTGRES_USER', ''),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
+            'HOST': os.environ.get('POSTGRES_HOST', ''),
+            'PORT': os.environ.get('POSTGRES_PORT', ''),
+        }
     }
-}
+
+# 환경변수가 존재하지 않을 경우 sqlite3을 사용합니다.
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -190,7 +205,13 @@ SIMPLE_JWT = {
 
 
 # CORS
+# CORS 허용 목록에 ec2 ip를 추가합니다.
+CORS_ORIGIN_WHITELIST = ['http://3.35.166.33']
 CORS_ALLOW_ALL_ORIGINS = True
+
+# CSRF 허용 목록을 CORS와 동일하게 설정합니다.
+CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
+
 
 # Email 전송 설정
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
