@@ -26,10 +26,10 @@ environ.Env.read_env(
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY',"")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG','0') == '1'
+DEBUG = os.environ.get('DEBUG','0') == '1'
 
 ALLOWED_HOSTS = ['*']
 
@@ -223,10 +223,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 
 # 발신할 이메일
-EMAIL_HOST_USER = env("SECRET_EMAIL")
+EMAIL_HOST_USER = os.environ.get("SECRET_EMAIL","")
 
 # 발신할 메일의 비밀번호 '구글앱비밀번호'
-EMAIL_HOST_PASSWORD = env("SECRET_PASSWORD")
+EMAIL_HOST_PASSWORD = os.environ.get("SECRET_PASSWORD","")
 
 # TLS 보안 방법
 EMAIL_USE_TLS = True
@@ -234,4 +234,4 @@ EMAIL_USE_TLS = True
 # 사이트와 관련한 자동응답을 받을 이메일 주소
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-KAKAO_REST_API_KEY = env("KAKAO_REST_API_KEY")
+KAKAO_REST_API_KEY = os.environ.get("KAKAO_REST_API_KEY","")
