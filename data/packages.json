@@ -1,0 +1,488 @@
+[
+    {   
+        "pk": 1,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "모던 사각 향수 공병",       
+            "image": "https://degrasse.co.kr/web/product/big/202211/b799d4c30aa72f0d3c82e449fed92425.png",
+            "package_category": 1
+      }
+    },
+    {   
+        "pk": 2,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "클리어 향수 용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202209/b7b2c002f1823ba48c07b275ec677d95.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 3,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "슬림 원통 클림프 향수용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/91e980dd6f786edfcf733364df9dd05c.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 4,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "직사각 조말론 클림프 향수용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202206/b10ea9c5dfacd8b2b984e764ecd52b7b.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 5,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "루이 향수용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202206/04a48b29daf757ed817d8216bff9a44f.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 6,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "바이레도 향수공병",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/d1662877e72117d49ce7cd16a4fe042d.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 7,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "타원 스와르 퍼퓸 글라스",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/65bbc1826362d24e27698a648b304e66.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 8,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "조말론 스퀘어 향수용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/4e6215f9a52a544b62677fe88a71af6d.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 9,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "라운드 실린더 향수용기",       
+            "image": "https://degrasse.co.kr/web/product/big/201911/491c289e9febb99ba4c06417945d408f.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 10,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "럭셔리 루텐 향수유리용기",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/b1fe0df5cff9d8ae1dc2c554defe3f7b.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 11,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "크리스탈 퍼퓸 글라스",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/91131e615012b54b70d8a09e537c2187.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 12,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "모자이크 패턴 퍼퓸 글라스",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/e9f9306797d35c5add5b240bb25cb7f4.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 13,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "라운드 퍼퓸 글라스",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/7c1fa858dd5efa77c54867ae021ec69c.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 14,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "크리스탈 스퀘어 퍼퓸 글라스",       
+            "image": "https://degrasse.co.kr/web/product/big/202210/bb6f7d5420a801a23d54bf6fb91d302d.png",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 15,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "고급 향수 유리용기",       
+            "image": "https://degrasse.co.kr/web/product/big/201805/1228_shop1_1526893273088.jpg",
+            "package_category": 1
+        }
+    },
+    {   
+        "pk": 16,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "핑크색 튜브용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1659510574261_188.BO-TB0015.jpg",
+            "package_category": 2
+        }
+    },
+    {   
+        "pk": 17,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "검은색 튜브용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1659510542226_187.BO-TB0014.jpg",
+            "package_category": 2
+        }
+    },
+    {   
+        "pk": 18,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "회색 튜브용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1655699999437_154.BO-TB0011.png",
+            "package_category": 2
+        }
+    },
+    {   
+        "pk": 19,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "흰색 튜브용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1655699918560_152.BO-TB0009.jpg",
+            "package_category": 2
+        }
+    },
+    {   
+        "pk": 20,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "얇은 흰색 튜브용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1655699748474_149.BO-TB0006.jpg",
+            "package_category": 2
+        }
+    },
+    {   
+        "pk": 21,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "갈색 튜브용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1655699608431_147.BO-TB0004.jpg",
+            "package_category": 2
+        }
+    },
+    {   
+        "pk": 22,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "초록색 크림형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1655975254078_166.BO-JI0014.jpg",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 23,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "투명 크림형 용기(검은색)",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1655975211250_165.BO-JI0013.jpg",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 24,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "투명 크림형 용기(흰색)",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1655969566666_158.BO-JI0012.jpg",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 25,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "투명 크림형 용기(금색)",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1655266023304_140.BO-JI0010.png",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 26,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "흰색 크림형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1650602100587_123.BO-JI0009.png",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 27,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "하늘색 크림형 용기(은색)",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/BO_0962Ja.png",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 28,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "하늘색 크림형 용기(하늘색)",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/BO_1297Ja.png",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 29,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "보라색 크림형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/BO_1065Ja.png",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 30,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "핑크색 크림형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/BO_1931Ja.png",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 31,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "청록색 크림형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/BO_0972Ja.png",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 32,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "주황색 크림형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/0928.png",
+            "package_category": 3
+        }
+    },
+    {   
+        "pk": 33,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "투명 스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1667352071662_201.BO-MLS0009.png",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 34,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "핑크색 스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1667351938112_198.BO-MST0016.png",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 35,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "흰색 스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1659508923962_181.BO-MST0014.png",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 36,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "주황색 스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/0452.jpg",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 37,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "빨간색 스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/0528.png",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 38,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "베이지색 스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/0527.png",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 39,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "초록색 스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/0521.png",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 40,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "검은색 스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/0525.png",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 41,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "흰색 큰스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1650529583123_108.BO-MST0008.png",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 42,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "주황색 큰스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1650529479074_106.BO-MST0006_d.png",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 43,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "검은색 큰스틱형 용기",       
+            "image": "https://bonne-bucket.s3.ap-northeast-2.amazonaws.com/bonne/package/1650529432643_105.BO-MST0005.png",
+            "package_category": 4
+        }
+    },
+    {   
+        "pk": 44,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "투명 롤온 용기(검은색)",       
+            "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/images/2017/02/20/15/2/2e4e3b1b-86b4-469b-9487-b4aece536d80.jpg",
+            "package_category": 5
+        }
+    },
+    {   
+        "pk": 45,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "투명 긴롤온 용기(검은색)",       
+            "image": "https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/1f65/2a7fc39c780e9c929feaa80aec28ed40fe20631451346d0626d35dee5c5d.jpg",
+            "package_category": 5
+        }
+    },
+    {   
+        "pk": 46,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "투명 긴롤온 용기(은색)",       
+            "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/4381/aff4663c269ef85790dd3cb46edfb96f4f88e17a89bc1fb4ab70465ce4d7.jpg",
+            "package_category": 5
+        }
+    },
+    {   
+        "pk": 47,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "대나무 롤온 용기",       
+            "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/92f4/4b4e1e2bd9456c700217fc74343d1d1adbf7ad6a221f7222c054e3c744df.jpg",
+            "package_category": 5
+        }
+    },
+    {   
+        "pk": 48,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "흰색 롤온 용기",       
+            "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/f1c9/6ea2ae9ff4a267d6f0f5af91ecd6f01f8b6dfce8b379e49f0ce22adc290b.jpg",
+            "package_category": 5
+        }
+    },
+    {   
+        "pk": 49,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "흰색 긴롤온 용기",       
+            "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/4d2b/f8760d0acdb750871f599a359b09cd20100c0f2120525fbc9c9a00c48f57.jpg",
+            "package_category": 5
+        }
+    },
+    {   
+        "pk": 50,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "갈색 롤온 용기",       
+            "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/9c4a/6c3dbd4a9062f47a676ae23012a2461134e6b1828310ce18799a98d7e13f.jpeg",
+            "package_category": 5
+        }
+    },
+    {   
+        "pk": 51,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "갈색 롤온 용기(금색)",       
+            "image": "https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/d30c/23d94d9353f1d75225b7f27c1ab34df21aac2ad9136910d9d115e1365117.jpg",
+            "package_category": 5
+        }
+    },
+    {   
+        "pk": 52,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "갈색 긴롤온 용기",       
+            "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/c0cc/5159cecbccc80c92203d369507a3c8dded5a6bcc532f1fa162126d30656d.jpg",
+            "package_category": 5
+        }
+    },
+    {   
+        "pk": 53,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "은색 긴롤온 용기",       
+            "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/6a24/6c355439622d489825b6948cac95fca3f6c3c8faf7a58ed66a3a03ad2382.jpg",
+            "package_category": 5
+        }
+    },
+    {   
+        "pk": 54,
+        "model": "custom_perfume.package",
+        "fields": {
+            "name": "금색 롤온 용기",       
+            "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/4c13/a57f82e2ef13daacc5b1886b268cb4fdc164e0e7247e1406f2f077367f4e.jpeg",
+            "package_category": 5
+        }
+    }
+]
