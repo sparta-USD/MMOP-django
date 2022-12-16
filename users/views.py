@@ -184,6 +184,7 @@ class KakaoSigninView(APIView):
         }
     
     def post(self, request):
+        request_origin = request.META["HTTP_ORIGIN"]
         code = request.data["code"] # Front에서 전달받은 Kakao의 인가코드
         if not code:
             return Response({"message":"카카오 로그인에 실패했습니다."}, status=status.HTTP_400_BAD_REQUEST)
@@ -193,7 +194,7 @@ class KakaoSigninView(APIView):
         data = {
             "grant_type" : 'authorization_code',
             "client_id" : getattr(settings, "KAKAO_REST_API_KEY"),
-            "redirect_uri" : "https://mmop-perfume.com/users/signin.html",
+            "redirect_uri" : f"{request_origin}/users/signin.html",
             "code" : code
             }
         response = requests.post(get_kakao_token_url, data=data)
