@@ -48,7 +48,7 @@ class UserSerializer(serializers.ModelSerializer):
         
         message = render_to_string('email_valid.html', {
             'user': user,
-            'domain': 'http://127.0.0.1:8000',
+            'domain': 'https://api.mmop-perfume.com',
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user),
         })
