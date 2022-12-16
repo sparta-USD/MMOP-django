@@ -57,10 +57,14 @@ class PerfumeSerializer(serializers.ModelSerializer):
     likes = serializers.StringRelatedField(many=True)
     likes_count = serializers.SerializerMethodField()
     #
+    brand = serializers.SerializerMethodField()
     top_notes = NoteSerializer(many=True)
     heart_notes = NoteSerializer(many=True)
     base_notes = NoteSerializer(many=True)
     none_notes = NoteSerializer(many=True)
+
+    def get_brand(self, obj):
+        return obj.brand.title
     
     class Meta :
         model = Perfume
