@@ -6,7 +6,7 @@ from pprint import pprint
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-file_path = "./static/json/"
+file_path = "./data/"
 
 def make_notes_db():
     with open(file_path+'notes.json', encoding='utf-8', mode='r') as f:
