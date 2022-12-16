@@ -170,7 +170,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=720),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
@@ -204,7 +204,7 @@ SIMPLE_JWT = {
 
 # CORS
 # CORS 허용 목록에 ec2 ip를 추가합니다.
-CORS_ORIGIN_WHITELIST = ['http://3.39.240.251']
+CORS_ORIGIN_WHITELIST = ['https://api.mmop-perfume.com',]
 CORS_ALLOW_ALL_ORIGINS = True
 
 # CSRF 허용 목록을 CORS와 동일하게 설정합니다.
