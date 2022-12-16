@@ -1,0 +1,878 @@
+[
+    {
+        "model": "perfume.brand",
+        "pk": 1,
+        "fields": {
+            "origin_id": "26185169",
+            "image": "https://basenotes.com/img/logo/6911642678666-w",
+            "title": "Kimberly New York",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 2,
+        "fields": {
+            "origin_id": "105818",
+            "image": "https://basenotes.com/img/logo/16293925281876-j",
+            "title": "Scotch Porter",
+            "website": "https://www.scotchporter.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 3,
+        "fields": {
+            "origin_id": "105811",
+            "image": "https://basenotes.com/img/logo/16291197411939-j",
+            "title": "City Rhythm",
+            "website": "https://www.cityrhythmfragrance.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 4,
+        "fields": {
+            "origin_id": "105810",
+            "image": "https://basenotes.com/img/logo/16287002869314-j",
+            "title": "Boy Smells",
+            "website": "https://boysmells.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 5,
+        "fields": {
+            "origin_id": "105808",
+            "image": "https://basenotes.com/img/logo/16285293921492-j",
+            "title": "Christian Provenzano Parfums",
+            "website": "https://cpparfums.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 6,
+        "fields": {
+            "origin_id": "105807",
+            "image": "https://basenotes.com/img/logo/16276555912187-j",
+            "title": "Benigna Parfums",
+            "website": "https://www.benignaparfums.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 7,
+        "fields": {
+            "origin_id": "105805",
+            "image": "https://basenotes.com/img/logo/16274891094385-j",
+            "title": "Southern Living",
+            "website": "https://www.southernliving.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 8,
+        "fields": {
+            "origin_id": "105804",
+            "image": "https://basenotes.com/img/logo/16273938609642-j",
+            "title": "Bohoboco",
+            "website": "https://bohobocoperfume.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 9,
+        "fields": {
+            "origin_id": "105803",
+            "image": "https://basenotes.com/img/logo/16272217268037-j",
+            "title": "The Observer Collection",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 10,
+        "fields": {
+            "origin_id": "105802",
+            "image": "https://basenotes.com/img/logo/16268927983110-j",
+            "title": "Kheimistrii",
+            "website": "https://kheimistrii.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 11,
+        "fields": {
+            "origin_id": "105801",
+            "image": "https://basenotes.com/img/logo/1626540206112-j",
+            "title": "Olfactum",
+            "website": "https://www.olfactumfragrances.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 12,
+        "fields": {
+            "origin_id": "105799",
+            "image": "https://basenotes.com/img/logo/16262790673886-j",
+            "title": "Georges Rech",
+            "website": "https://www.georges-rech.fr/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 13,
+        "fields": {
+            "origin_id": "100006",
+            "image": "https://basenotes.com/img/logo/449-j",
+            "title": "Acqua di Parma",
+            "website": "http://www.acquadiparma.com",
+            "brand_desc": "Founded in 1916 in Parma, with its eponymous cologne. The house now produces several Acqua di Parma variations as well as the Blu Mediteranneo aromatherapy line (launched in the late nineties) and the men's grooming range Collezione Barbiere (launched in 2005).\nLVMH Moet Hennessey Louis Vuitton acquired 50% of Acqua di Parma in 2001.\n",
+            "brand_desc_ko": "1916 년 파르마에서 시조 쾰른과 함께 설립되었습니다.이 집은 이제 Blu Mediteranneo Aromatherapy 라인 (90 년대 후반에 출시 됨)과 Men 's Grooming Range Collezione Barbiere (2005 년에 출시 됨)뿐만 아니라 몇 가지 Acqua di Parma 변형을 생산합니다.\nLVMH Moet Hennessy Louis Vuitton은 2001 년 Acqua di Parma의 50%를 인수했습니다.\n"
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 14,
+        "fields": {
+            "origin_id": "100035",
+            "image": "https://basenotes.com/img/logo/450-j",
+            "title": "Amouage",
+            "website": "http://www.amouage.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 15,
+        "fields": {
+            "origin_id": "100132",
+            "image": "https://basenotes.com/img/logo/461-j",
+            "title": "Bulgari",
+            "website": "http://www.bulgari.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 16,
+        "fields": {
+            "origin_id": "100141",
+            "image": "https://basenotes.com/img/logo/464-j",
+            "title": "Calvin Klein",
+            "website": "http://www.calvinklein.com",
+            "brand_desc": "Calvin Klein is an American fashion brand founded in 1968. The brand has its heyday in the eighties and early nineties when the market for designer jeans reached a frenzy point. Their popularity was no doubt helped by the notoriously provocative advertising - they were criticised in 1980 for a television spot shot by Richard Avedon featuring a then fifteen year old Brooke Shields and the famous line, “Do you know what comes between me and my Calvins? Nothing.” Despite being banned by several major network affiliates, the controversy only added to the appeal - royalties in 1980 were ten times what they’d been only two years previously.\nIn 1978, Calvin Klein debuted its first fragrance, Calvin Klein for Women. However, the cosmetics market proved more difficult for the brand, and they closed that arm of the business at the end of 1979. Less than one month later, it was bought by Robert Taylor, the president of personal care company Minnetonka. Calvin for Men launched in 1981 to disappointing sales. It would be another four years before they finally got a foothold in the fragrance market.\nObsession launched in 1985 and instantly became a bestseller. The spicy, classic Oriental bore all the hallmark of 1980’s power fragrances - it was heady, bold and could be detected in microscopic quantities by Russian space stations. The first television commercials were again directed by Richard Avedon - four unashamedly pretentious thirty-second spots featuring model Josie Borain stomping through stark surrealist settings, discarding frustrated suitors in her wake. Though certainly entertaining, it was the nineties print ads that once again caused a stir. Shot by Mario Sorrenti in black and white, and they featured a very young and very naked Kate Moss, whose gaunt frame was accused of promoting the “heroin chic” aesthetic.\nIn 1988, the brand launched its most successful fragrance to date - Eternity, created by the legendary Sophia Grojsman, which has over forty flankers at the time of writing. The name was inspired by a family ring given to Wallis Simpson by Edward VIII which Klein had purchased for his then-wife at an auction. After the excesses of Obsession, the ads for Eternity were comparatively innocent and clean-cut, perhaps foreshadowing the return to minimalism of early nineties fragrances. \nCK One, launched in 1994, was age first explicitly unisex fragrance to land in mainstream department stores. The brand itself did not use the word unisex, instead preferring the tagline, “One For All”. The advertising campaign (again, featuring Kate Moss) tapped into the nineties fascination with androgynous fashion and is still used as a case study in concepts of gender in marketing. \nThe dawn of the new millennium saw the Calvin Klein Collection’s fashion credentials beginning to fade. Only one company-owned Collection store remains - the flagship in Manhattan. Although it can still be found in international markets, these are operated by franchise partners. Underwear, jeans and fragrance can still be found in both standalone and department stores. In 2005, the license to manufacture CK fragrances was bought from Unilever by Coty, Inc.\nIn 2010, animal behavioural researchers with the Wildlife Conservation Society revealed that they were using Obsession for Men to attract jaguars and pumas to their hidden cameras. It can also be used to attract ocelots, peccaries, coati and tapirs. \n",
+            "brand_desc_ko": "Calvin Klein은 1968 년에 설립 된 미국 패션 브랜드입니다.이 브랜드는 디자이너 청바지 시장이 열광적 인 지점에 도달했을 때 80 년대와 90 년대 초반에 전성기를 보유하고 있습니다.그들의 인기는 악명 높은 도발적인 광고에 의해 의심의 여지가 없었다. 그들은 1980 년 리차드 아베 돈 (Richard Avedon)이 15 살짜리 브룩 쉴즈 (Brooke Shields)와 유명한 라인을 특징으로 한 텔레비전 지점으로 비난을 받았다.아무것도 아님.\"여러 주요 네트워크 계열사에 의해 금지 되었음에도 불구하고 논란은 항소에 추가되었습니다. 1980 년의 로열티는 2 년 전의 10 배였습니다.\n1978 년 캘빈 클라인 (Calvin Klein)은 첫 향수 인 캘빈 클라인 (Calvin Klein for Women)을 데뷔했습니다.그러나 화장품 시장은 브랜드가 더 어려워졌으며 1979 년 말에 사업의 ARM을 폐쇄했습니다. 1 개월도 채되지 않아 개인 의료 회사 인 Minnetonka의 회장 인 Robert Taylor가 인수했습니다.Calvin for Men은 1981 년에 실망스러운 판매를 시작했습니다.그들이 마침내 향수 시장에서 발판을 마련하기까지는 4 년이 더 걸릴 것입니다.\n강박 관념은 1985 년에 시작되어 즉시 베스트셀러가되었습니다.매운 고전적인 오리엔탈은 1980 년대의 전력 향기의 모든 특징을 보았습니다. 러시아 우주 스테이션에서는 굵고 대담했으며 현미경 수량으로 감지 될 수있었습니다.첫 번째 텔레비전 광고는 리차드 아베 돈 (Richard Avedon)이 다시 감독했다.확실히 재미 있지만 90 년대 인쇄 광고는 다시 한 번 저어주었습니다.마리오 소렌 티 (Mario Sorrenti)가 흑백으로 촬영했으며, 그들은 매우 젊고 매우 알몸 케이트 모스 (Kate Moss)를 특징으로했으며, 그 프레임은“헤로인 세련된”미학을 홍보 한 혐의로 기소되었습니다.\n1988 년 에이 브랜드는 현재까지 가장 성공적인 향수 인 Eternity를 시작했습니다.이 이름은 Klein이 경매에서 당시 아내를 위해 구입 한 Edward VIII의 Wallis Simpson에게 주어진 가족 반지에서 영감을 받았습니다.과잉의 집착 후, 영원의 광고는 비교적 결백하고 깨끗한 자르기 때문에 아마도 90 년대 초반의 미니멀리즘으로의 복귀를 예고했을 것입니다.\n1994 년에 시작된 CK One은 주류 백화점에 착륙하기 위해 최초의 유니스로이 향기였습니다.브랜드 자체는 Unisex라는 단어를 사용하지 않고 대신 \"모두를위한 하나\"라는 태그 라인을 선호했습니다.광고 캠페인 (Kate Moss를 특징으로하는)은 Androgynous Fashion과 90 년대의 매력에 영향을 미쳤으며 여전히 마케팅 성별 개념의 사례 연구로 사용됩니다.\n새로운 밀레니엄의 새벽에는 Calvin Klein Collection의 패션 자격 증명이 사라지기 시작했습니다.회사 소유의 컬렉션 스토어 한 명만 남아 있습니다. 맨해튼의 주력.국제 시장에서도 여전히 찾을 수 있지만 프랜차이즈 파트너가 운영합니다.속옷, 청바지 및 향수는 여전히 독립형 및 백화점에서 찾을 수 있습니다.2005 년 CK 향수 제조 라이센스는 Coty, Inc.의 Unilever에서 구입했습니다.\n2010 년 야생 동물 보존 협회 (Wildlife Conservation Society)의 동물 행동 연구원들은 남성이 재규어와 푸마를 숨겨진 카메라로 끌어 들이기 위해 집착을 사용하고 있다고 밝혔다.또한 Ocelots, Peccaries, Coati 및 Tapirs를 유치하는 데 사용될 수 있습니다.\n"
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 17,
+        "fields": {
+            "origin_id": "100167",
+            "image": "https://basenotes.com/img/logo/120-j",
+            "title": "Chanel",
+            "website": "http://www.chanel.com",
+            "brand_desc": "Born in 1883, Gabrielle ‘Coco’ Chanel overcame a difficult childhood to become the most successful fashion designer of her time.  Her personal style was revolutionary in its simplicity and practicality; she introduced to the mainstream a number of innovations, and in doing so almost single-handedly changed the face of women’s fashion. \nIn 1921, perfumer Ernest Beaux created Chanel No. 5 for her – possibly the most famous perfume in the world; one of its iconic bottles is said to be sold every thirty seconds.  It was one of the first perfumes to contain a mixture of flowers, and the first to use aldehydes so prominently.\nParfums Chanel has employed four in-house perfumers during its history: Ernest Beaux from 1920 to 1961, followed by Henri Robert from 1958 until 1987 - and from 1978 to 2015, Jacques Polge. Olivier Polge joined the company in 2013, and took over from his father Jacques in 2015.\nAlso, since his appointment in 2005 as Director of Research & Development for Fragrance, Christopher Sheldrake has worked in collaboration with both Polges on several Chanel fragrances.\n",
+            "brand_desc_ko": "1883 년에 태어난 가브리엘 '코코'샤넬은 어려운 어린 시절을 극복하여 당시 가장 성공적인 패션 디자이너가되었습니다.그녀의 개인적인 스타일은 단순성과 실용성에서 혁명적이었습니다.그녀는 주류에 많은 혁신을 소개했으며, 그렇게함으로써 거의 한 손으로 여성 패션의 얼굴을 바꿨습니다.\n1921 년, 향수 인 어니스트 비은 (Ernest Beaux)은 그녀를 위해 샤넬 No. 5를 만들었습니다. 아마도 세계에서 가장 유명한 향수 일 것입니다.상징적 인 병 중 하나는 30 초마다 판매된다고합니다.그것은 꽃의 혼합물을 포함하는 최초의 향수 중 하나였으며, 처음으로 Aldehydes를 두드러지게 사용합니다.\nParfums Chanel은 1920 년부터 1961 년까지 Ernest Beaux, 1958 년부터 1987 년까지, 1978 년부터 2015 년까지 Jacques Polge의 역사 기간 동안 4 개의 사내 향수를 고용했습니다.Olivier Polge는 2013 년에 회사에 합류하여 2015 년 아버지 Jacques를 인수했습니다.\n또한 2005 년 Fragrance의 연구 개발 책임자로 임명 된 이래 Christopher Sheldrake는 여러 샤넬 향수에 대한 두 폴지와 협력하여 일했습니다.\n"
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 18,
+        "fields": {
+            "origin_id": "100181",
+            "image": "https://basenotes.com/img/logo/406-j",
+            "title": "Christian Dior",
+            "website": "http://www.dior.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 19,
+        "fields": {
+            "origin_id": "100202",
+            "image": "https://basenotes.com/img/logo/470-j",
+            "title": "Comme des Garçons",
+            "website": "http://www.comme-des-garcons.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 20,
+        "fields": {
+            "origin_id": "100220",
+            "image": "https://basenotes.com/img/logo/14981394471816-j",
+            "title": "Creed",
+            "website": "http://www.creedboutique.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 21,
+        "fields": {
+            "origin_id": "100260",
+            "image": "https://basenotes.com/img/logo/476-j",
+            "title": "Dolce & Gabbana",
+            "website": "http://www.dolcegabbana.it",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 22,
+        "fields": {
+            "origin_id": "100267",
+            "image": "https://basenotes.com/img/logo/8881644850494-p",
+            "title": "Editions de Parfums Frederic Malle",
+            "website": "http://www.editionsdeparfums.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 23,
+        "fields": {
+            "origin_id": "100348",
+            "image": "https://basenotes.com/img/logo/488-j",
+            "title": "Giorgio Armani",
+            "website": "http://www.giorgioarmani.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 24,
+        "fields": {
+            "origin_id": "100352",
+            "image": "https://basenotes.com/img/logo/489-j",
+            "title": "Givenchy",
+            "website": "http://www.givenchy.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 25,
+        "fields": {
+            "origin_id": "100361",
+            "image": "https://basenotes.com/img/logo/133-j",
+            "title": "Guerlain",
+            "website": "http://www.guerlain.com",
+            "brand_desc": " Guerlain fragrances are characterised by a secret blend of ingredients known as the \"Guerlinade\". Since being sold to LVMH, a number of outside perfumers have worked for Guerlain and, as of 2008, Thierry Wasser has been the in-house perfumer, creating a number of new fragrances - most recently the new, pink, Shalimar Parfum Initial\n\n\t\t\t\t\tLinks\n\t\t\t\t\n\n http://www.guerlain.com\n\n\n",
+            "brand_desc_ko": "guerlain 향수는 \"Guerlinade\"로 알려진 성분의 비밀 조화를 특징으로합니다.LVMH에 판매 된 이후, 많은 외부 향수가 Guerlain에서 일해 왔으며 2008 년 현재 Thierry Wasser는 사내 향수로 많은 새로운 향수를 만들어 냈습니다.\n\n연결\n\n\n http://www.guerlain.com\n"
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 26,
+        "fields": {
+            "origin_id": "100385",
+            "image": "https://basenotes.com/img/logo/494-j",
+            "title": "Hermès",
+            "website": "http://www.hermes.com",
+            "brand_desc": "Hermès is a French luxury goods manufacturer founded in 1837 by Thierry Hermès. Its first incarnation was a workshop in the Grands Boulevards quarter of Paris, producing bespoke harnesses and bridles for carriages of European nobleman. In 1880, the firm moved to its now iconic address, 24 Rue Faubourg, where it expanded its offer to saddlery and began selling to the public. \nDuring the 1920’s and 1930’s, Émile-Maurice Hermès (son of Thierry) once again expanded the brand’s offering to include accessories and clothing - including scarves and what came to be known as the Kelly bag, which remain two of their most iconic and coveted items to this date. \nEau d’Hermès, the house’s first perfume, debuted in 1951 with an initial production of only 1500 bottles. Its creator, Edmond Roudnitska, already had two iconic fragrances - Christian Dior’s Diorama and Rochas Femme - under his belt by the time he began working on it. The fragrance’s leather notes were inspired by the inside of an Hermès handbag and is still considered shocking by some today due to his inclusion of pungent animalic notes and sweaty cumin. Eau d’Hermès dropped off the radar after the 1950’s until Hermès began re-marketing it in 1993. Though still not as popular or well-known as the best-selling Eau des Merveilles  or Terre d’Hermès, the fragrance enjoys something of a cult status among connoisseurs of the brand.\nIn 1961 Hermès chose Guy Robert to create its first feminine fragrance, Calèche. The launch firmly established the company as an icon in the designer fragrance industry; over the next forty years it worked closely with some of the biggest names in the business, including Maurice Roucel, Fabrice Pellegrin, Olivia Giacobetti, Ralf Schwieger and Françoise Caron to create timeless fragrances that still rank among perfume hall best-sellers of today.\nVéronique Gautier, then director of Parfums Hermès, took the unusual step of hiring Jean-Claude Ellena as the firm’s in-house perfumer in 2004. At the time, only Chanel employed an in-house perfumer, Jacques Polge. Despite boasting an enviable collection of iconic scents, perfume sales lagged behind those of other designer houses. The aim of this bold decision was to not only create a best-seller, but to give the collection the same sense of coherence and craftsmanship for which the fashion and accessory side of the business was known. The wager paid off - four years after Ellena’s appointment, perfume sales at Hermès had supposedly tripled, and his 2006 creation Terre d’Hermès remained on the French best-sellers list for nearly five years.\nIn 2013, Ellena invited perfumer Christine Nagel to join him at the helm of Perfumes Hermès. Although he remains a driving creative force behind the brand, she is now widely regarded as the “chief nose”. \n",
+            "brand_desc_ko": "Hermès는 1837 년 Thierry Hermès가 설립 한 프랑스 고급 제품 제조업체입니다.첫 번째 화신은 파리의 그랜드대로 (Grands Boulevards Quarter)에서 워크숍으로 유럽 귀족의 마차를위한 맞춤형 하네스와 굴레를 제작했습니다.1880 년 에이 회사는 현재 상징적 인 주소 인 24 Rue Faubourg로 이사하여 Saddlery에게 제안을 확대하고 대중에게 판매하기 시작했습니다.\n1920 년대와 1930 년대에 Émile -Maurice Hermès (Thierry의 아들)는 스카프와 스카프를 포함한 액세서리와 의류를 포함하여 브랜드의 제안을 다시 한 번 확장했습니다.이 날짜까지.\n하우스 최초의 향수 인 Eau D 'Hermès는 1951 년에 1500 병의 초기 생산으로 데뷔했습니다.제작자 인 Edmond Roudnitska는 이미 작업을 시작할 때까지 그의 벨트 아래에 Christian Dior의 Diorama와 Rochas Femme라는 두 가지 상징적 인 향수를 가졌습니다.향수의 가죽 노트는 Hermès 핸드백 내부에서 영감을 얻었으며 매운 동물 노트와 땀이 많은 커민을 포함하여 오늘날에도 여전히 충격적인 것으로 간주됩니다.오브 헤르메스 (Eau D 'Hermès)는 1950 년대 이후 1993 년에 헤르 메스 (Hermès)가 다시 마케팅을 시작할 때까지 레이더를 떨어 뜨렸다.브랜드의 감정가들 사이의 컬트 지위.\n1961 년 Hermès는 Guy Robert를 선택하여 첫 번째 여성 향수 인 Calèche를 만들었습니다.이 출시는 디자이너 향수 산업의 아이콘으로 회사를 확고히 설립했습니다.향후 40 년 동안 Maurice Roucel, Fabrice Pellegrin, Olivia Giacobetti, Ralf Schwieger 및 Françoise Caron을 포함하여 비즈니스에서 가장 큰 이름과 긴밀히 협력하여 오늘날의 향수 홀 베스트셀러 중에도 여전히 순위가 매겨진 시대를 초월한 향수를 만듭니다.\n당시 Parfums Hermès의 이사 인 Véronique Gautier는 2004 년 회사의 사내 향수로 Jean-Claude Ellena를 고용하는 특이한 단계를 밟았습니다. 당시 Chanel 만 사내 향수 인 Jacques Polge를 사용했습니다.상징적 인 향기가 부러워함에도 불구하고 향수 판매는 다른 디자이너 주택의 뒤에 뒤떨어졌습니다.이 대담한 결정의 목표는 베스트셀러를 만들뿐만 아니라 컬렉션에 비즈니스의 패션과 액세서리 측면이 알려진 동일한 일관성과 장인 정신을 제공하는 것이 었습니다.베팅은 Ellena의 임명 후 4 년 후, Hermès의 향수 판매는 3 배가되었고 2006 년 창조 Terre D 'Hermès는 거의 5 년 동안 프랑스 베스트셀러 목록에 남아있었습니다.\n2013 년에 Ellena는 향수 Christine Nagel을 초대하여 Perfumes Hermès의 지배권에 초대했습니다.그는 브랜드 뒤에 창조적 인 힘을 유지하고 있지만, 그녀는 이제“주요 코”로 널리 알려져 있습니다.\n"
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 27,
+        "fields": {
+            "origin_id": "100394",
+            "image": "https://basenotes.com/img/logo/496-j",
+            "title": "Hugo Boss",
+            "website": "http://www.bossfragrances.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 28,
+        "fields": {
+            "origin_id": "100402",
+            "image": "https://basenotes.com/img/logo/497-j",
+            "title": "Issey Miyake",
+            "website": "http://www.isseymiyake.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 29,
+        "fields": {
+            "origin_id": "100661",
+            "image": "https://basenotes.com/img/logo/525-j",
+            "title": "Paco Rabanne",
+            "website": "http://www.pacorabanne.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 30,
+        "fields": {
+            "origin_id": "100690",
+            "image": "https://basenotes.com/img/logo/432-j",
+            "title": "Penhaligon's",
+            "website": "http://www.penhaligons.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 31,
+        "fields": {
+            "origin_id": "100826",
+            "image": "https://basenotes.com/img/logo/541-j",
+            "title": "Thierry Mugler",
+            "website": "http://www.thierrymugler.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 32,
+        "fields": {
+            "origin_id": "100862",
+            "image": "https://basenotes.com/img/logo/536-j",
+            "title": "Versace",
+            "website": "http://www.versace.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 33,
+        "fields": {
+            "origin_id": "100884",
+            "image": "https://basenotes.com/img/logo/533-j",
+            "title": "Yves Saint Laurent",
+            "website": "http://www.ysl-parfums.com",
+            "brand_desc": "Born in Algeria in 1936, at the age of seventeen Yves Saint Laurent left for Paris, and was soon working for Dior.  Following Christian Dior’s death, he became chief designer at the age of just twenty-one, and launched his own fashion house in 1962.  Amongst other innovations, he made designer ready-to-wear fashion popular through his boutique ‘Rive Gauche’, the name of which would later be used for a fragrance.\nThe House of Yves Saint Laurent (frequently abbreviated to YSL) began producing perfumes in 1964.   Often provocative, Yves Saint Laurent posed nude to advertise Pour Homme in the early seventies, and was responsible for the choice of name for Opium, created for him by Jean-Louis Sieuzac and Jean Amic; probably the most famous of his fragrances, it is regarded as the ultimate ‘eighties powerhouse’ fragrance.  The equally striking Kouros, dating from 1981, is effectively its male counterpart; both of these fragrances won Fifi awards on their release.\n",
+            "brand_desc_ko": "1936 년 알제리에서 태어나 17 세의 나이에 파리로 떠났고 곧 디올을 위해 일하고있었습니다.Christian Dior의 죽음에 이어 그는 단지 21 세의 나이에 최고 디자이너가되었으며 1962 년에 자신의 패션 하우스를 시작했습니다. 다른 혁신 중에서도 그는 부티크 'Rive Gauche'를 통해 디자이너를 대중적으로 만들었습니다.그 이름은 나중에 향기에 사용됩니다.\nYves Saint Laurent의 하원 (YSL에 자주 약칭)은 1964 년에 향수를 생산하기 시작했습니다. 종종 도발적인 Yves Saint Laurent는 70 년대 초반에 Pour Homme를 광고하기 위해 누드를 포즈를 취했으며, 그를 위해 만든 Opium의 이름 선택을 담당했습니다.Jean-Louis Sieuzac과 Jean Amic;아마도 그의 향수 중 가장 유명한 것은 최고의 '80 년대 강국'향수로 간주됩니다.1981 년부터 데이트 된 똑같이 인상적인 쿠 로스는 사실상 남성의 대응 물입니다.이 두 향수는 모두 릴리스에서 FIFI 상을 수상했습니다.\n"
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 34,
+        "fields": {
+            "origin_id": "101834",
+            "image": "https://basenotes.com/img/logo/540-j",
+            "title": "Tom Ford",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 35,
+        "fields": {
+            "origin_id": "102221",
+            "image": "https://basenotes.com/img/logo/5911642685452-j",
+            "title": "P&G Prestige Beaute",
+            "website": "http://www.pg.com",
+            "brand_desc": "A division of Procter & Gamble (previously known as Eurocos) that was responsible for a huge portfolio of brands including Hugo Boss, Jean Patou, Lacoste, Escada and Dunhill.\nThe division was sold to Coty in 2015.\n",
+            "brand_desc_ko": "Hugo Boss, Jean Patou, Lacoste, Escada 및 Dunhill을 포함한 거대한 브랜드 포트폴리오를 담당하는 Procter & Gamble (이전에 Eurocos로 알려진) 부서.\n이 부서는 2015 년에 코티에게 판매되었습니다.\n"
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 36,
+        "fields": {
+            "origin_id": "103019",
+            "image": "https://basenotes.com/img/logo/3385-j",
+            "title": "Xerjoff",
+            "website": "http://www.xerjoff.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 37,
+        "fields": {
+            "origin_id": "100075",
+            "image": "https://basenotes.com/img/logo/15876635395255-j",
+            "title": "Balenciaga",
+            "website": "http://www.balenciaga.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 38,
+        "fields": {
+            "origin_id": "100091",
+            "image": "https://basenotes.com/img/logo/1553547370694-j",
+            "title": "Benetton",
+            "website": "http://www.benetton.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 39,
+        "fields": {
+            "origin_id": "100612",
+            "image": "https://basenotes.com/img/logo/14293534957691-j",
+            "title": "Montblanc",
+            "website": "http://www.montblanc.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 40,
+        "fields": {
+            "origin_id": "100695",
+            "image": "https://basenotes.com/img/logo/1466079375364-j",
+            "title": "Perfumer's Workshop",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 41,
+        "fields": {
+            "origin_id": "100742",
+            "image": "https://basenotes.com/img/logo/14834486272375-j",
+            "title": "Robert Piguet",
+            "website": "http://www.ffandcltd.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 42,
+        "fields": {
+            "origin_id": "101815",
+            "image": "https://basenotes.com/img/logo/3207-j",
+            "title": "Delrae",
+            "website": "http://www.parfumsdelrae.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 43,
+        "fields": {
+            "origin_id": "102445",
+            "image": "https://basenotes.com/img/logo/14585093524560-j",
+            "title": "Playboy",
+            "website": "http://playboyfragrances.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 44,
+        "fields": {
+            "origin_id": "103669",
+            "image": "https://basenotes.com/img/logo/16257624623625-j",
+            "title": "Evody",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 45,
+        "fields": {
+            "origin_id": "104040",
+            "image": "https://basenotes.com/img/logo/15198228245728-j",
+            "title": "Le Soft Perfume",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 46,
+        "fields": {
+            "origin_id": "104259",
+            "image": "https://basenotes.com/img/logo/15046236337241-j",
+            "title": "PMP Perfumes",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 47,
+        "fields": {
+            "origin_id": "104437",
+            "image": "https://basenotes.com/img/logo/14733340774409-j",
+            "title": "Leighton Denny",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 48,
+        "fields": {
+            "origin_id": "104825",
+            "image": "https://basenotes.com/img/logo/14519326762715-j",
+            "title": "Mayson & Co.",
+            "website": "http://www.maysonandco.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 49,
+        "fields": {
+            "origin_id": "102952",
+            "image": "https://basenotes.com/img/logo/123-g",
+            "title": "Dragoco",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 50,
+        "fields": {
+            "origin_id": "102954",
+            "image": "https://basenotes.com/img/logo/4141644574872-p",
+            "title": "Givaudan",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 51,
+        "fields": {
+            "origin_id": "102951",
+            "image": "https://basenotes.com/img/logo/132-j",
+            "title": "IFF",
+            "website": "http://www.iff.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 52,
+        "fields": {
+            "origin_id": "103303",
+            "image": "https://basenotes.com/img/logo/14785173314787-p",
+            "title": "Fragrance Resources",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 53,
+        "fields": {
+            "origin_id": "102953",
+            "image": "https://basenotes.com/img/logo/1622727896543-j",
+            "title": "Firmenich",
+            "website": "http://www.firmenich.com",
+            "brand_desc": "FIrmenich is a flavor and fragrance house founded in Geneva in 1895 byPhilippe Chuit and Martin Naef. Shortly afterwards they were joined by Fred Firmenich who became the majority partner.\nFirmenich is the company behind the fragrances ck One and Acqua di Gio amongst others. In 2001 the company launched a website, Osmoz which is designed to educate consumers about fragrances\n",
+            "brand_desc_ko": "Firmenich는 1895 년 제네바에서 Byphilippe Chuit와 Martin Naef의 맛과 향수 주택입니다.얼마 지나지 않아 그들은 대다수 파트너가 된 Fred Firmenich와 합류했습니다.\nFirmenich는 Fragrances CK One과 Acqua di Gio의 배후에있는 회사입니다.2001 년 에이 회사는 소비자에게 향수에 대해 교육하도록 설계된 웹 사이트 인 Osmoz를 시작했습니다.\n"
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 54,
+        "fields": {
+            "origin_id": "102924",
+            "image": "https://basenotes.com/img/logo/14376547438723-j",
+            "title": "Mane",
+            "website": "http://www.mane.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 55,
+        "fields": {
+            "origin_id": "102956",
+            "image": "https://basenotes.com/img/logo/",
+            "title": "Quest International",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 56,
+        "fields": {
+            "origin_id": "102983",
+            "image": "https://basenotes.com/img/logo/3061667464308-w",
+            "title": "Robertet",
+            "website": "http://www.robertet.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 57,
+        "fields": {
+            "origin_id": "102949",
+            "image": "https://basenotes.com/img/logo/5371667464019-p",
+            "title": "Symrise",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 58,
+        "fields": {
+            "origin_id": "102955",
+            "image": "https://basenotes.com/img/logo/2511664616416-p",
+            "title": "Takasago",
+            "website": "http://www.takasago.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 59,
+        "fields": {
+            "origin_id": "103302",
+            "image": "https://basenotes.com/img/logo/",
+            "title": "Drom",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 60,
+        "fields": {
+            "origin_id": "103304",
+            "image": "https://basenotes.com/img/logo/778-g",
+            "title": "CPL Aromas",
+            "website": "http://www.cplaromas.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 61,
+        "fields": {
+            "origin_id": "100082",
+            "image": "https://basenotes.com/img/logo/457-j",
+            "title": "Bath and Body Works",
+            "website": "http://www.bathandbodyworks.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 62,
+        "fields": {
+            "origin_id": "100580",
+            "image": "https://basenotes.com/img/logo/4249-j",
+            "title": "Mäurer & Wirtz",
+            "website": "http://www.m-w.de",
+            "brand_desc": "Maurer + Wirtz (M&W) is the fragrance and cosmetics division of Dalli Werke - Mäurer + Wirtz, a family owned company, now run by the fifth generation of the Wirtz family.\nThe company was founded in Stolberg in 1845 by Michael Mäurer and Andreas August Wirtz as a manufacturer of soaps. Since 1990 the Dalli Werke and M&W divisions have operated as separate companies, with Dalli Werke concentrating on detergent products and M&W concentrating on cosmetics and fragrance products.\nIn 1938 Tabac Original was launched as a soap. Eau de Cologne, Aftershave and Electric Pre-Shave were added to the range 21 years later in 1959. Today the Tabac range consists of a very extensive range of male grooming essentials \nIn 1972 M&W acquired Cosmeurop and merged this with Savonerrie Wagner, to form Cosmeurop S.A.\n1975 sees the creation of Parfums Loris Azzaro, with the now discontinued feminine Azzaro, and in 1978 the classic masculine fragrance Azzaro Pour Homme. This division was acquired by Clarins Paris in 1995.\nAt the end of 2006, M&W acquired four ex-Muelhen's brands from Procter & Gamble. These included Sir Irisch Moos, Extase, Tosca and the 'original' eau de cologne, 4711.\n",
+            "brand_desc_ko": "Maurer + Wirtz (M & W)는 현재 5 세대 Wirtz 가족이 운영하는 가족 소유 회사 인 Dalli Werke -Mäurer + Wirtz의 향수 및 화장품 부서입니다.\n이 회사는 1845 년 Stolberg에서 Michael Mäurer와 Andreas August Wirtz에 의해 비누 제조업체로 설립되었습니다.1990 년부터 Dalli Werke와 M & W 부서는 별도의 회사로 운영되었으며 Dalli Werke는 세제 제품에 집중하고 M & W는 화장품 및 향수 제품에 집중하고 있습니다.\n1938 년 Tabac Original은 비누로 출시되었습니다.Eau de Cologne, Aftershave 및 Electric Pre Shave는 21 년 후 1959 년에 범위에 추가되었습니다. 오늘날 Tabac 범위는 매우 광범위한 남성 손질 필수품으로 구성됩니다.\n1972 년 M & W는 Cosmeurop을 인수하여 Savonerrie Wagner와 합병하여 Cosmeurop S.A.\n1975 년은 현재 중단 된 여성 아 자로와 함께 Parfums Loris Azzaro의 창조를보고 있으며 1978 년에는 고전적인 남성 향기 Azzaro가 쏟아 부었습니다.이 부서는 1995 년 Clarins Paris에 의해 인수되었습니다.\n2006 년 말 M & W는 Procter & Gamble에서 4 개의 전직 Muelhen 브랜드를 인수했습니다.여기에는 Irisch Moos 경, Extase, Tosca 및 'Original'Eau de Cologne, 4711이 포함되었습니다.\n"
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 63,
+        "fields": {
+            "origin_id": "100686",
+            "image": "https://basenotes.com/img/logo/527-j",
+            "title": "Paul Smith",
+            "website": "http://www.paulsmith.co.uk",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 64,
+        "fields": {
+            "origin_id": "103270",
+            "image": "https://basenotes.com/img/logo/15639773231333-j",
+            "title": "Cire Trudon",
+            "website": "http://www.ciretrudon.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 65,
+        "fields": {
+            "origin_id": "103752",
+            "image": "https://basenotes.com/img/logo/3542-j",
+            "title": "Pull & Bear",
+            "website": "http://www.pullandbear.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 66,
+        "fields": {
+            "origin_id": "104763",
+            "image": "https://basenotes.com/img/logo/14431069575243-j",
+            "title": "Nabeel",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 67,
+        "fields": {
+            "origin_id": "104820",
+            "image": "https://basenotes.com/img/logo/15686548851618-j",
+            "title": "Les Ecuadors",
+            "website": "http://www.lesecuadors.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 68,
+        "fields": {
+            "origin_id": "104826",
+            "image": "https://basenotes.com/img/logo/14519962259062-j",
+            "title": "1907",
+            "website": "http://www.1907.sk/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 69,
+        "fields": {
+            "origin_id": "105421",
+            "image": "https://basenotes.com/img/logo/1606063373320-j",
+            "title": "Essential Parfums",
+            "website": null,
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 70,
+        "fields": {
+            "origin_id": "105427",
+            "image": "https://basenotes.com/img/logo/15352992998573-j",
+            "title": "Sarah Ireland Perfumes",
+            "website": "https://www.sarah-ireland.com/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 71,
+        "fields": {
+            "origin_id": "105640",
+            "image": "https://basenotes.com/img/logo/15918812376530-j",
+            "title": "Dar Hamad",
+            "website": "https://darhamad.com.kw/en/",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 72,
+        "fields": {
+            "origin_id": "105757",
+            "image": "https://basenotes.com/img/logo/16255779127489-j",
+            "title": "Lvnea",
+            "website": "https://www.lvnea.com",
+            "brand_desc": "",
+            "brand_desc_ko": ""
+        }
+    },
+    {
+        "model": "perfume.brand",
+        "pk": 73,
+        "fields": {
+            "origin_id": "100608",
+            "image": "https://basenotes.com/img/logo/15071337015759-j",
+            "title": "Molton Brown",
+            "website": "http://www.moltonbrown.co.uk",
+            "brand_desc": "In 1973 Molton Brown opened their first hair salon on Molton Street in Mayfair, London. Its aim was to use natural products and aimed for a different approach to hairdressing. In 1978, Dale Daxon Bowers joined Molton Brown from Mary Quant Cosmetics and went on to create the range of products for which the company became known.\nAs well as selling their products in stores the company also supply spas, airlines and hotels with their products.\n",
+            "brand_desc_ko": "1973 년 Molton Brown은 런던의 Mayfair에있는 Molton Street에서 첫 번째 미용실을 열었습니다.그것의 목표는 천연 제품을 사용하는 것이었고 미용에 대한 다른 접근법을 목표로했습니다.1978 년 Dale Daxon Bowers는 Mary Quant Cosmetics의 Molton Brown에 합류하여 회사가 알려진 제품의 범위를 만들었습니다.\n상점에서 제품을 판매 할뿐만 아니라 회사는 스파, 항공사 및 호텔에 제품을 공급합니다.\n"
+        }
+    }
+]

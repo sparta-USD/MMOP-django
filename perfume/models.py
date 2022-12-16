@@ -4,15 +4,26 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from custom_perfume.models import Note
 
+class Brand(models.Model):
+    origin_id = models.IntegerField()
+    image = models.CharField(max_length=256,null=True, blank=True)
+    title = models.CharField(max_length=100)
+    website = models.CharField(max_length=256,null=True, blank=True)
+    brand_desc = models.TextField(null=True, blank=True)
+    brand_desc_ko = models.TextField(null=True, blank=True)
+
 
 class Perfume(models.Model):
     origin_id = models.IntegerField()
     image = models.CharField(max_length=256,null=True, blank=True)
     title = models.CharField(max_length=100)
-    brand = models.CharField(max_length=100,null=True, blank=True)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="brand_perfume")
     gender = models.CharField(max_length=5,null=True, blank=True)
     price = models.FloatField(default=0)
+    price_unit = models.CharField(default="USD", max_length=100 ,null=True, blank=True)
     launch_date = models.DateField(null=True, blank=True)
+    desc = models.TextField(null=True, blank=True)
+    desc_ko = models.TextField(null=True, blank=True)
     top_notes = models.ManyToManyField(to=Note, related_name="perfumes_top", blank=True)
     heart_notes = models.ManyToManyField(to=Note, related_name="perfumes_heart", blank=True)
     base_notes = models.ManyToManyField(to=Note, related_name="perfumes_base", blank=True)
