@@ -6,17 +6,30 @@ from .models import Perfume, Review
 from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from django.db.models import Max,Count
+from django.db.models import Max,Count,Avg
 from .recommend import recommend
 import random
 from rest_framework.permissions import AllowAny
 from .permission import IsAuthenticated, IsAdminOrReadOnly, IsOwnerIsAdminOrReadOnly
+from .pagination import PerfumePagination
+from rest_framework.generics import GenericAPIView
+from rest_framework.filters import SearchFilter
 
-class PerfumeView(APIView):
+class PerfumeView(GenericAPIView):
+    '''
+      향수 목록 검색
+      - ?serch= : 향수명, 브랜드명, 향이름(영문/한글)
+    '''
     permission_classes = [IsAdminOrReadOnly]
+
+    queryset = Perfume.objects.all()
+    serializer_class = PerfumeSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['title','brand__title','top_notes__name','top_notes__kor_name','heart_notes__name','heart_notes__kor_name','base_notes__name','base_notes__kor_name','none_notes__name','none_notes__kor_name']
+
     def get(self, request):
-        all_perfume = Perfume.objects.annotate(likes_count=Count('likes')).order_by("-likes_count", "-launch_date","brand","title")[:20]
-        serializer = PerfumeSerializer(all_perfume, many=True)
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = PerfumeSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
