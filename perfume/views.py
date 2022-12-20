@@ -21,6 +21,17 @@ class PerfumeView(GenericAPIView):
       - pagination : 20개씩
       - ?search= : 향수명, 브랜드명, 향이름(영문/한글)
       - ?ordering= : 최신순, 찜많은순, 리뷰평점순, 리뷰많은순
+
+      향수 목록 조회 결과
+      {
+        count: 데이터 갯수
+        last: 마지막 페이지
+        next: 다음 페이지
+        previous: 이전 페이지
+        results:{
+            향수 데이터
+        }
+      }
     '''
     permission_classes = [IsAdminOrReadOnly]
 
@@ -36,7 +47,8 @@ class PerfumeView(GenericAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         page_queryset = self.paginate_queryset(queryset)
         serializer = PerfumeSerializer(page_queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        result = self.get_paginated_response(data=serializer.data)
+        return Response(result, status=status.HTTP_200_OK)
 
     def post(self, request):
         serializer = PerfumeSerializer(data=request.data)
