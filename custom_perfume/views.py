@@ -15,7 +15,9 @@ class CustomPerfumeView(APIView):
 
 class CustomPerfumeCreateView(APIView):
     def get (self, request):
-        notes = Note.objects.all()[:974]
+        notes = Note.objects.all()[:974] # Note id=973까지가 커스텀 향수 제작시 사용되는 향
+        
+        # cnt는 현재 향이 쓰이고 있는지 확인하는 변수
         custom_notes = []
         for note in notes:
             cnt = 0
