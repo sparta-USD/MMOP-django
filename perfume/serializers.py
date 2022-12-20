@@ -77,7 +77,12 @@ class PerfumeSerializer(serializers.ModelSerializer):
     
     
 # brand
-class BrandSerializer(serializers.ModelSerializer):
+class AllBrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = "__all__"
+        
+class DetailBrandSerializer(serializers.ModelSerializer):
     brand_perfume = PerfumeSerializer(many=True)
     
     class Meta:

@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from .models import Perfume, Review, Brand
-from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer,BrandSerializer
+from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer,DetailBrandSerializer,AllBrandSerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db.models import Max,Count
@@ -130,11 +130,18 @@ class SurveyView(APIView):
 
 
 # 향수 브랜드 
-class PerfumeBrandView(APIView):
+class AllBrandView(APIView):
     permission_classes = [IsAdminOrReadOnly]
     def get(self, request):
-        brands = Brand.objects.all()
-        serializer = BrandSerializer(brands, many=True)
+        all_brand = Brand.objects.all()
+        serializer = AllBrandSerializer(all_brand, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class DetailBrandView(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    def get(self, request, brand_id):
+        brand = get_object_or_404(Brand ,id=brand_id)
+        serializer = DetailBrandSerializer(brand)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     
