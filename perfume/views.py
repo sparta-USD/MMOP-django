@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
-from .models import Perfume, Review
+from .models import Perfume, Review, Brand
 from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -129,6 +129,16 @@ class SurveyView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# 향수 브랜드 
+class PerfumeBrandView(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    def get(self, request):
+        brands = Brand.objects.all()
+        serializer = BrandSerializer(brands, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    
+# 리뷰
 class ReviewView(APIView):
     permission_classes = [IsOwnerIsAdminOrReadOnly]
     # 리뷰 목록 조회하기
@@ -159,7 +169,7 @@ class ReviewView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         
-        
+# 리뷰
 class ReviewDetailView(APIView):
     permission_classes = [IsOwnerIsAdminOrReadOnly]
     def get(self, request, perfume_id): 
