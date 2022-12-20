@@ -24,6 +24,8 @@ from django.core import mail
 from django.conf import settings
 from django.utils.html import strip_tags
 
+from django.contrib.auth.hashers import check_password
+
 class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=255, validators=[UniqueValidator(queryset=get_user_model().objects.all(), message="이 이메일은 이미 사용중입니다.")])
     username = serializers.CharField(max_length=15, validators=[UniqueValidator(queryset=get_user_model().objects.all(), message="이 닉네임은 이미 사용중입니다.")])
@@ -48,7 +50,7 @@ class UserSerializer(serializers.ModelSerializer):
         
         message = render_to_string('email_valid.html', {
             'user': user,
-            'domain': 'http://127.0.0.1:8000',
+            'domain': 'http://127.0.0.1:5500',
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user),
         })
@@ -134,18 +136,28 @@ class ProfileEditSerializer(serializers.ModelSerializer):
         allow_blank=True,
         write_only = True
     )
+    origin_password = serializers.CharField(
+        style = {'input_type': 'password'},
+        allow_blank=True,
+        write_only = True
+    )
     class Meta:
         model = User
-        fields=("username", "password","password2", "phone_number", "email")
-
+        fields=("username","origin_password","password","password2", "phone_number", "email")\
+     
     def update(self, instance, validated_data):
         instance.email = validated_data.get('email', instance.email)
         instance.username = validated_data.get('username', instance.username)
         instance.phone_number = validated_data.get('phone_number', instance.phone_number)
-        password = validated_data.get('password')
-        if password:
-            instance.set_password(password)
-        instance.save()
+        instance.origin_password = validated_data.get('origin_password')
+        if check_password(instance.origin_password, instance.password):
+            password = validated_data.get('password')
+            if password:
+                instance.set_password(password)
+            instance.save()
+        else:
+            raise serializers.ValidationError("기존 비밀번호가 일치하지않습니다!")
+        
         return instance
 
     def validate_phone_number(self, value):
@@ -169,6 +181,4 @@ class ProfileEditSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("비밀번호가 일치하지 않습니다.")
             del attrs["password2"]
         return attrs
-
-    
      
