@@ -13,23 +13,28 @@ from rest_framework.permissions import AllowAny
 from .permission import IsAuthenticated, IsAdminOrReadOnly, IsOwnerIsAdminOrReadOnly
 from .pagination import PerfumePagination
 from rest_framework.generics import GenericAPIView
-from rest_framework.filters import SearchFilter
+from rest_framework.filters import SearchFilter,OrderingFilter
 
 class PerfumeView(GenericAPIView):
     '''
-      향수 목록 검색
-      - ?serch= : 향수명, 브랜드명, 향이름(영문/한글)
+      향수 목록 조회
+      - pagination : 20개씩
+      - ?search= : 향수명, 브랜드명, 향이름(영문/한글)
+      - ?ordering= : 최신순, 찜많은순, 리뷰평점순, 리뷰많은순
     '''
     permission_classes = [IsAdminOrReadOnly]
 
-    queryset = Perfume.objects.all()
+    queryset = Perfume.objects.annotate(likes_count=Count('likes'),reviews_count=Count('perfume_reviews'),avg_reviews_grade=Avg('perfume_reviews__grade'))
     serializer_class = PerfumeSerializer
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter,OrderingFilter]
     search_fields = ['title','brand__title','top_notes__name','top_notes__kor_name','heart_notes__name','heart_notes__kor_name','base_notes__name','base_notes__kor_name','none_notes__name','none_notes__kor_name']
+    ordering_fields = ['launch_date','likes_count','avg_reviews_grade','reviews_count'] #최신순, 찜순, 리뷰평점순
+    ordering=['brand__title','title']
 
     def get(self, request):
         queryset = self.filter_queryset(self.get_queryset())
-        serializer = PerfumeSerializer(queryset, many=True)
+        page_queryset = self.paginate_queryset(queryset)
+        serializer = PerfumeSerializer(page_queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
