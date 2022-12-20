@@ -25,6 +25,7 @@ class PerfumeView(GenericAPIView):
     permission_classes = [IsAdminOrReadOnly]
 
     queryset = Perfume.objects.annotate(likes_count=Count('likes'),reviews_count=Count('perfume_reviews'),avg_reviews_grade=Avg('perfume_reviews__grade'))
+    pagination_class = PerfumePagination
     serializer_class = PerfumeSerializer
     filter_backends = [SearchFilter,OrderingFilter]
     search_fields = ['title','brand__title','top_notes__name','top_notes__kor_name','heart_notes__name','heart_notes__kor_name','base_notes__name','base_notes__kor_name','none_notes__name','none_notes__kor_name']
