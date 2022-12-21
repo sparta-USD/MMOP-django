@@ -20,7 +20,7 @@ class PerfumeView(GenericAPIView):
       향수 목록 조회
       - pagination : 20개씩
       - ?search= : 향수명, 브랜드명, 향이름(영문/한글)
-      - ?ordering= : 최신순, 찜많은순, 리뷰평점순, 리뷰많은순
+      - ?ordering= : 최신순, 찜많은순, 리뷰평점순, 리뷰많은순, 무작위(설문조사)
 
       향수 목록 조회 결과
       {
@@ -40,7 +40,7 @@ class PerfumeView(GenericAPIView):
     serializer_class = PerfumeSerializer
     filter_backends = [SearchFilter,OrderingFilter]
     search_fields = ['title','brand__title','top_notes__name','top_notes__kor_name','heart_notes__name','heart_notes__kor_name','base_notes__name','base_notes__kor_name','none_notes__name','none_notes__kor_name']
-    ordering_fields = ['launch_date','likes_count','avg_reviews_grade','reviews_count'] #최신순, 찜순, 리뷰평점순
+    ordering_fields = ['launch_date','likes_count','avg_reviews_grade','reviews_count','?'] #최신순, 찜순, 리뷰평점순, 리뷰많은순, 무작위(설문조사)
     ordering=['brand__title','title']
 
     def get(self, request):
@@ -76,21 +76,6 @@ class PerfumeDetailView(APIView):
         target_perfume = get_object_or_404(Perfume ,id=id)
         target_perfume.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-class PerfumeRandomView(APIView):
-    permission_classes = [AllowAny]
-    def get(self, request):
-        limit = int(request.data.get("limit",20)) # 데이터 없으면 limit = 20
-
-        max_id = Perfume.objects.aggregate(max_id=Max('id'))['max_id']
-        perfume_random_list = []
-        while len(perfume_random_list) < limit: # 무조건 limit 갯수만큼 random 추출
-            random_index = random.randint(1, max_id)
-            perfume = Perfume.objects.get(id=random_index)
-            if perfume:
-                serializer = PerfumeSerializer(perfume)
-                perfume_random_list.append(serializer.data)
-        return Response(perfume_random_list, status=status.HTTP_200_OK)
 
 class PerfumeRecommendView(APIView):
     permission_classes = [AllowAny]

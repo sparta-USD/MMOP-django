@@ -3,7 +3,6 @@ from . import views
 urlpatterns = [
     path("", views.PerfumeView.as_view(), name="perfume_view"),
     path("<int:id>/", views.PerfumeDetailView.as_view(), name="perfume_detail_view"),
-    path("random/", views.PerfumeRandomView.as_view(), name="perfume_random_view"),
     path("recommend/", views.PerfumeRecommendView.as_view(), name="perfume_recommend_view"),
     path("<int:perfume_id>/recommend/", views.PerfumeProductRecommendView.as_view(), name="perfume_product_recommend_view"),
     path("survey/", views.SurveyView.as_view(), name="survey_view"),
