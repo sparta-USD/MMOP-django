@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from .models import Perfume, Review
-from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer
+from .serializers import PerfumeSerializer,PerfumeBaseSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db.models import Max,Count,Avg
@@ -21,6 +21,7 @@ class PerfumeView(GenericAPIView):
       - pagination : 20개씩
       - ?search= : 향수명, 브랜드명, 향이름(영문/한글)
       - ?ordering= : 최신순, 찜많은순, 리뷰평점순, 리뷰많은순, 무작위(설문조사)
+      - 기본정렬 : 브랜드명-제품명
 
       향수 목록 조회 결과
       {
@@ -76,6 +77,38 @@ class PerfumeDetailView(APIView):
         target_perfume = get_object_or_404(Perfume ,id=id)
         target_perfume.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class PerfumeSimpleView(GenericAPIView):
+    '''
+      향수 목록 심플 조회
+      - pagination : 20개씩
+      - ?search= : 향수명, 브랜드명
+      - 기본정렬 : 브랜드명-제품명
+
+      향수 목록 심플 조회 결과
+      {
+        count: 데이터 갯수
+        last: 마지막 페이지
+        next: 다음 페이지
+        previous: 이전 페이지
+        results: 향수 데이터
+      }
+    '''
+    permission_classes = [IsAdminOrReadOnly]
+
+    queryset = Perfume.objects.all()
+    pagination_class = PerfumePagination
+    serializer_class = PerfumeBaseSerializer
+    filter_backends = [SearchFilter,OrderingFilter]
+    search_fields = ['title','brand__title']
+    ordering=['brand__title','title']
+
+    def get(self, request):
+        queryset = self.filter_queryset(self.get_queryset())
+        page_queryset = self.paginate_queryset(queryset)
+        serializer = PerfumeBaseSerializer(page_queryset, many=True)
+        result = self.get_paginated_response(data=serializer.data)
+        return Response(result, status=status.HTTP_200_OK)
 
 class PerfumeRecommendView(APIView):
     permission_classes = [AllowAny]
