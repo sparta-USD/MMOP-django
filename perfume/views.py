@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
-from .models import Perfume, Review
-from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer
+from .models import Perfume, Review, Brand
+from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer,DetailBrandSerializer,AllBrandSerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db.models import Max,Count,Avg
@@ -160,6 +160,23 @@ class SurveyView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# 향수 브랜드 
+class AllBrandView(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    def get(self, request):
+        all_brand = Brand.objects.all()
+        serializer = AllBrandSerializer(all_brand, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class DetailBrandView(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    def get(self, request, brand_id):
+        brand = get_object_or_404(Brand ,id=brand_id)
+        serializer = DetailBrandSerializer(brand)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+# 리뷰 전체
 class ReviewView(APIView):
     permission_classes = [IsOwnerIsAdminOrReadOnly]
     # 리뷰 목록 조회하기
@@ -190,7 +207,7 @@ class ReviewView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         
-        
+# 리뷰 상세조회
 class ReviewDetailView(APIView):
     permission_classes = [IsOwnerIsAdminOrReadOnly]
     def get(self, request, perfume_id): 
