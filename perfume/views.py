@@ -178,7 +178,7 @@ class DetailBrandView(APIView):
 class BrandRandomView(APIView):
     permission_classes = [AllowAny]
     def get(self, request):
-        limit = int(request.data.get("limit",6)) # 데이터 없으면 limit = 6
+        limit = int(request.data.get("limit",8)) # 데이터 없으면 limit = 8
 
         max_id = Brand.objects.aggregate(max_id=Max('id'))['max_id']
         brand_random_list = []
