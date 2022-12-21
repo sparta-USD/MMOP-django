@@ -2,22 +2,53 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
-from .models import Perfume, Review
-from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer
+from .models import Perfume, Review, Brand
+from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer,DetailBrandSerializer,AllBrandSerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from django.db.models import Max,Count
+from django.db.models import Max,Count,Avg
 from .recommend import recommend
 import random
 from rest_framework.permissions import AllowAny
 from .permission import IsAuthenticated, IsAdminOrReadOnly, IsOwnerIsAdminOrReadOnly
+from .pagination import PerfumePagination
+from rest_framework.generics import GenericAPIView
+from rest_framework.filters import SearchFilter,OrderingFilter
 
-class PerfumeView(APIView):
+class PerfumeView(GenericAPIView):
+    '''
+      향수 목록 조회
+      - pagination : 20개씩
+      - ?search= : 향수명, 브랜드명, 향이름(영문/한글)
+      - ?ordering= : 최신순, 찜많은순, 리뷰평점순, 리뷰많은순
+
+      향수 목록 조회 결과
+      {
+        count: 데이터 갯수
+        last: 마지막 페이지
+        next: 다음 페이지
+        previous: 이전 페이지
+        results:{
+            향수 데이터
+        }
+      }
+    '''
     permission_classes = [IsAdminOrReadOnly]
+
+    queryset = Perfume.objects.annotate(likes_count=Count('likes'),reviews_count=Count('perfume_reviews'),avg_reviews_grade=Avg('perfume_reviews__grade'))
+    pagination_class = PerfumePagination
+    serializer_class = PerfumeSerializer
+    filter_backends = [SearchFilter,OrderingFilter]
+    search_fields = ['title','brand__title','top_notes__name','top_notes__kor_name','heart_notes__name','heart_notes__kor_name','base_notes__name','base_notes__kor_name','none_notes__name','none_notes__kor_name']
+    ordering_fields = ['launch_date','likes_count','avg_reviews_grade','reviews_count'] #최신순, 찜순, 리뷰평점순
+    ordering=['brand__title','title']
+
     def get(self, request):
-        all_perfume = Perfume.objects.annotate(likes_count=Count('likes')).order_by("-likes_count", "-launch_date","brand","title")[:20]
-        serializer = PerfumeSerializer(all_perfume, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        queryset = self.filter_queryset(self.get_queryset())
+        page_queryset = self.paginate_queryset(queryset)
+        serializer = PerfumeSerializer(page_queryset, many=True)
+        result = self.get_paginated_response(data=serializer.data)
+        return Response(result, status=status.HTTP_200_OK)
 
     def post(self, request):
         serializer = PerfumeSerializer(data=request.data)
@@ -129,6 +160,23 @@ class SurveyView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# 향수 브랜드 
+class AllBrandView(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    def get(self, request):
+        all_brand = Brand.objects.all()
+        serializer = AllBrandSerializer(all_brand, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class DetailBrandView(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    def get(self, request, brand_id):
+        brand = get_object_or_404(Brand ,id=brand_id)
+        serializer = DetailBrandSerializer(brand)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+# 리뷰 전체
 class ReviewView(APIView):
     permission_classes = [IsOwnerIsAdminOrReadOnly]
     # 리뷰 목록 조회하기
@@ -159,7 +207,7 @@ class ReviewView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         
-        
+# 리뷰 상세조회
 class ReviewDetailView(APIView):
     permission_classes = [IsOwnerIsAdminOrReadOnly]
     def get(self, request, perfume_id): 
