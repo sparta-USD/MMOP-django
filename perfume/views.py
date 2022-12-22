@@ -197,16 +197,9 @@ class BrandRandomView(APIView):
     permission_classes = [AllowAny]
     def get(self, request):
         limit = int(request.data.get("limit",8)) # 데이터 없으면 limit = 8
-
-        max_id = Brand.objects.aggregate(max_id=Max('id'))['max_id']
-        brand_random_list = []
-        while len(brand_random_list) < limit: # 무조건 limit 갯수만큼 random 추출
-            random_index = random.randint(1, max_id)
-            brand = Brand.objects.get(id=random_index)
-            if brand:
-                serializer = AllBrandSerializer(brand)
-                brand_random_list.append(serializer.data)
-        return Response(brand_random_list, status=status.HTTP_200_OK)
+        brand  = Brand.objects.all().order_by("?")[:limit]
+        serializer = AllBrandSerializer(brand, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 # 리뷰 전체
