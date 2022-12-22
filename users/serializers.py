@@ -143,27 +143,29 @@ class ProfileEditSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = User
-        fields=("username","origin_password","password","password2", "phone_number", "email")\
+        fields=("username","origin_password","password","password2", "phone_number", "email")
      
     def update(self, instance, validated_data):
         instance.email = validated_data.get('email', instance.email)
         instance.username = validated_data.get('username', instance.username)
         instance.phone_number = validated_data.get('phone_number', instance.phone_number)
         instance.origin_password = validated_data.get('origin_password')
-        if check_password(instance.origin_password, instance.password):
-            password = validated_data.get('password')
-            if password:
-                instance.set_password(password)
-            instance.save()
-        else:
-            raise serializers.ValidationError("기존 비밀번호가 일치하지않습니다!")
-        
+        if instance.origin_password:
+            if check_password(instance.origin_password, instance.password):
+                password = validated_data.get('password')
+                if password:
+                    instance.set_password(password)
+                instance.save()
+            else:
+                raise serializers.ValidationError("기존 비밀번호가 일치하지않습니다!")
+        instance.save()
         return instance
 
     def validate_phone_number(self, value):
-        is_phone_number_valid = re.match("\d{3}-\d{3,4}-\d{4}", value)
-        if not is_phone_number_valid:
-            raise serializers.ValidationError("'000-0000-0000' 형식에 맞게 번호를 입력해주세요")
+        if value:
+            is_phone_number_valid = re.match("\d{3}-\d{3,4}-\d{4}", value)
+            if not is_phone_number_valid:
+                raise serializers.ValidationError("'000-0000-0000' 형식에 맞게 번호를 입력해주세요")
         return value
 
     def validate_password(self, value):
