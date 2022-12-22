@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
-from .models import Perfume, Review
-from .serializers import PerfumeSerializer,PerfumeBaseSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer
+from .models import Perfume, Review, Brand
+from .serializers import PerfumeSerializer,PerfumeBaseSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer,DetailBrandSerializer,AllBrandSerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db.models import Max,Count,Avg
@@ -178,6 +178,38 @@ class SurveyView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# 향수 브랜드 
+class AllBrandView(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    def get(self, request):
+        all_brand = Brand.objects.all()
+        serializer = AllBrandSerializer(all_brand, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class DetailBrandView(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    def get(self, request, brand_id):
+        brand = get_object_or_404(Brand ,id=brand_id)
+        serializer = DetailBrandSerializer(brand)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class BrandRandomView(APIView):
+    permission_classes = [AllowAny]
+    def get(self, request):
+        limit = int(request.data.get("limit",8)) # 데이터 없으면 limit = 8
+
+        max_id = Brand.objects.aggregate(max_id=Max('id'))['max_id']
+        brand_random_list = []
+        while len(brand_random_list) < limit: # 무조건 limit 갯수만큼 random 추출
+            random_index = random.randint(1, max_id)
+            brand = Brand.objects.get(id=random_index)
+            if brand:
+                serializer = AllBrandSerializer(brand)
+                brand_random_list.append(serializer.data)
+        return Response(brand_random_list, status=status.HTTP_200_OK)
+
+
+# 리뷰 전체
 class ReviewView(APIView):
     permission_classes = [IsOwnerIsAdminOrReadOnly]
     # 리뷰 목록 조회하기
@@ -208,7 +240,7 @@ class ReviewView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         
-        
+# 리뷰 상세조회
 class ReviewDetailView(APIView):
     permission_classes = [IsOwnerIsAdminOrReadOnly]
     def get(self, request, perfume_id): 
