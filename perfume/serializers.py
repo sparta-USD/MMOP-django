@@ -3,9 +3,9 @@ from .models import Perfume, Review, Brand
 from custom_perfume.serializers import NoteSerializer
 
 class PerfumeBaseSerializer(serializers.ModelSerializer):
-    brand = serializers.SerializerMethodField()
+    brand_title = serializers.SerializerMethodField()
 
-    def get_brand(self, obj):
+    def get_brand_title(self, obj):
         return obj.brand.title
         
     class Meta:
@@ -61,13 +61,13 @@ class PerfumeSerializer(serializers.ModelSerializer):
     likes = serializers.StringRelatedField(many=True)
     likes_count = serializers.SerializerMethodField()
     #
-    brand = serializers.SerializerMethodField()
+    brand_title = serializers.SerializerMethodField()
     top_notes = NoteSerializer(many=True)
     heart_notes = NoteSerializer(many=True)
     base_notes = NoteSerializer(many=True)
     none_notes = NoteSerializer(many=True)
 
-    def get_brand(self, obj):
+    def get_brand_title(self, obj):
         return obj.brand.title
     
     class Meta :
