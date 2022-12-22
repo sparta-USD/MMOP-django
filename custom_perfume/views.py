@@ -5,6 +5,7 @@ from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from .models import *
 from .serializers import *
+from django.db.models import Count
 
 # Create your views here.
 class CustomPerfumeView(APIView):
@@ -15,11 +16,22 @@ class CustomPerfumeView(APIView):
 
 class CustomPerfumeCreateView(APIView):
     def get (self, request):
-        notes = Note.objects.all()
+        notes = Note.objects.all()[:974] # Note id=973까지가 커스텀 향수 제작시 사용되는 향
+        
+        # cnt는 현재 향이 쓰이고 있는지 확인하는 변수
+        custom_notes = []
+        for note in notes:
+            cnt = 0
+            cnt += note.perfumes_top.aggregate(cnt=Count('id'))["cnt"]
+            cnt += note.perfumes_none.aggregate(cnt=Count('id'))["cnt"]
+            cnt += note.perfumes_heart.aggregate(cnt=Count('id'))["cnt"]
+            cnt += note.perfumes_base.aggregate(cnt=Count('id'))["cnt"]
+            if cnt > 1:
+                custom_notes.append(note)
         packages = Package.objects.all()
         note_category = NoteCategory.objects.all()
         package_category = PackageCategory.objects.all()
-        notes_serializer = NoteSerializer(notes, many=True)
+        notes_serializer = NoteSerializer(custom_notes, many=True)
         packages_serializer = PackageSerializer(packages, many=True)
         note_category_serializer = NoteCategorySerializer(note_category, many=True)
         package_category_serializer = PackageCategorySerializer(package_category, many=True)
