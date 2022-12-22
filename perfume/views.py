@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from .models import Perfume, Review, Brand
-from .serializers import PerfumeSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer,DetailBrandSerializer,AllBrandSerializer
+from .serializers import PerfumeSerializer,PerfumeBaseSerializer,ReviewSerializer,ReviewCreateSerializer,ReviewUpdateSerializer,SurveySerializer,DetailBrandSerializer,AllBrandSerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db.models import Max,Count,Avg
@@ -20,7 +20,8 @@ class PerfumeView(GenericAPIView):
       향수 목록 조회
       - pagination : 20개씩
       - ?search= : 향수명, 브랜드명, 향이름(영문/한글)
-      - ?ordering= : 최신순, 찜많은순, 리뷰평점순, 리뷰많은순
+      - ?ordering= : 최신순, 찜많은순, 리뷰평점순, 리뷰많은순, 무작위(설문조사)
+      - 기본정렬 : 브랜드명-제품명
 
       향수 목록 조회 결과
       {
@@ -40,7 +41,7 @@ class PerfumeView(GenericAPIView):
     serializer_class = PerfumeSerializer
     filter_backends = [SearchFilter,OrderingFilter]
     search_fields = ['title','brand__title','top_notes__name','top_notes__kor_name','heart_notes__name','heart_notes__kor_name','base_notes__name','base_notes__kor_name','none_notes__name','none_notes__kor_name']
-    ordering_fields = ['launch_date','likes_count','avg_reviews_grade','reviews_count'] #최신순, 찜순, 리뷰평점순
+    ordering_fields = ['launch_date','likes_count','avg_reviews_grade','reviews_count','?'] #최신순, 찜순, 리뷰평점순, 리뷰많은순, 무작위(설문조사)
     ordering=['brand__title','title']
 
     def get(self, request):
@@ -77,20 +78,37 @@ class PerfumeDetailView(APIView):
         target_perfume.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class PerfumeRandomView(APIView):
-    permission_classes = [AllowAny]
-    def get(self, request):
-        limit = int(request.data.get("limit",20)) # 데이터 없으면 limit = 20
+class PerfumeSimpleView(GenericAPIView):
+    '''
+      향수 목록 심플 조회
+      - pagination : 20개씩
+      - ?search= : 향수명, 브랜드명
+      - 기본정렬 : 브랜드명-제품명
 
-        max_id = Perfume.objects.aggregate(max_id=Max('id'))['max_id']
-        perfume_random_list = []
-        while len(perfume_random_list) < limit: # 무조건 limit 갯수만큼 random 추출
-            random_index = random.randint(1, max_id)
-            perfume = Perfume.objects.get(id=random_index)
-            if perfume:
-                serializer = PerfumeSerializer(perfume)
-                perfume_random_list.append(serializer.data)
-        return Response(perfume_random_list, status=status.HTTP_200_OK)
+      향수 목록 심플 조회 결과
+      {
+        count: 데이터 갯수
+        last: 마지막 페이지
+        next: 다음 페이지
+        previous: 이전 페이지
+        results: 향수 데이터
+      }
+    '''
+    permission_classes = [IsAdminOrReadOnly]
+
+    queryset = Perfume.objects.all()
+    pagination_class = PerfumePagination
+    serializer_class = PerfumeBaseSerializer
+    filter_backends = [SearchFilter,OrderingFilter]
+    search_fields = ['title','brand__title']
+    ordering=['brand__title','title']
+
+    def get(self, request):
+        queryset = self.filter_queryset(self.get_queryset())
+        page_queryset = self.paginate_queryset(queryset)
+        serializer = PerfumeBaseSerializer(page_queryset, many=True)
+        result = self.get_paginated_response(data=serializer.data)
+        return Response(result, status=status.HTTP_200_OK)
 
 class PerfumeRecommendView(APIView):
     permission_classes = [AllowAny]

@@ -3,6 +3,11 @@ from .models import Perfume, Review, Brand
 from custom_perfume.serializers import NoteSerializer
 
 class PerfumeBaseSerializer(serializers.ModelSerializer):
+    brand = serializers.SerializerMethodField()
+
+    def get_brand(self, obj):
+        return obj.brand.title
+        
     class Meta:
         model = Perfume
         fields = '__all__'
