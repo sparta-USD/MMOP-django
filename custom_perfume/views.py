@@ -5,6 +5,7 @@ from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from .models import *
 from .serializers import *
+from django.db.models import Count
 
 # Create your views here.
 class CustomPerfumeView(APIView):
@@ -21,10 +22,10 @@ class CustomPerfumeCreateView(APIView):
         custom_notes = []
         for note in notes:
             cnt = 0
-            cnt += note.perfumes_top.exists()
-            cnt += note.perfumes_none.exists()
-            cnt += note.perfumes_heart.exists()
-            cnt += note.perfumes_base.exists()
+            cnt += note.perfumes_top.aggregate(cnt=Count('id'))["cnt"]
+            cnt += note.perfumes_none.aggregate(cnt=Count('id'))["cnt"]
+            cnt += note.perfumes_heart.aggregate(cnt=Count('id'))["cnt"]
+            cnt += note.perfumes_base.aggregate(cnt=Count('id'))["cnt"]
             if cnt > 1:
                 custom_notes.append(note)
         packages = Package.objects.all()
