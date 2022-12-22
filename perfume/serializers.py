@@ -1,9 +1,13 @@
 from rest_framework import serializers
-from .models import Perfume
-from perfume.models import Review
+from .models import Perfume, Review, Brand
 from custom_perfume.serializers import NoteSerializer
 
 class PerfumeBaseSerializer(serializers.ModelSerializer):
+    brand = serializers.SerializerMethodField()
+
+    def get_brand(self, obj):
+        return obj.brand.title
+        
     class Meta:
         model = Perfume
         fields = '__all__'
@@ -75,3 +79,17 @@ class PerfumeSerializer(serializers.ModelSerializer):
     
     def get_likes_count(self, obj):
         return obj.likes.count()
+    
+    
+# brand
+class AllBrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = "__all__"
+
+class DetailBrandSerializer(serializers.ModelSerializer):
+    brand_perfume = PerfumeSerializer(many=True)
+
+    class Meta:
+        model = Brand
+        fields = "__all__"
