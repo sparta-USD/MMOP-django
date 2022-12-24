@@ -161,6 +161,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+# 파일 업로드 용량 제한
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5000000 # value in bytes 5MB here
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5000000
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -9,7 +9,8 @@ from users.serializers import (
     UserSerializer, MypageSerializer, ProfileEditSerializer
     )
 from users.models import User
-
+from django.db.models import Q
+from django.http import HttpResponse
 # 메일링
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
@@ -98,9 +99,12 @@ class UserPasswordResetView(PasswordResetView):
     success_url = reverse_lazy('password_reset_done')
     form_class = PasswordResetForm
     def form_valid(self, form):
-        if User.objects.filter(email=self.request.POST.get("email")).exists():
-            return super().form_valid(form)
+        if User.objects.filter(Q(email=self.request.POST.get("email")) & Q(email_valid=0)):
+            return HttpResponse(
+        "<script>alert('해당 이메일은 카카오 간편가입 계정입니다.\\n로그인 페이지에서 카카오 소셜 로그인을 이용해주세요.');location.href='https://www.mmop-perfume.com/users/signin.html';</script>")
         else:
+            if User.objects.filter(email=self.request.POST.get("email")).exists():
+                return super().form_valid(form)
             return render(self.request, 'password_reset_done_fail.html')
 
 # 메일 전송 여부 확인            

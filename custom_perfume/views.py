@@ -8,6 +8,18 @@ from .serializers import *
 from django.db.models import Count
 
 # Create your views here.
+class CustomNoteView(APIView):
+    notes = Note.objects.all()[:974] # Note id=973까지가 커스텀 향수 제작시 사용되는 향
+    custom_notes = []
+    for note in notes:
+        cnt = 0
+        cnt += note.perfumes_top.aggregate(cnt=Count('id'))["cnt"]
+        cnt += note.perfumes_none.aggregate(cnt=Count('id'))["cnt"]
+        cnt += note.perfumes_heart.aggregate(cnt=Count('id'))["cnt"]
+        cnt += note.perfumes_base.aggregate(cnt=Count('id'))["cnt"]
+        if cnt > 1:
+            custom_notes.append(note)
+    
 class CustomPerfumeView(APIView):
     def get (self, request):
         custom_perfume = CustomPerfume.objects.all().order_by('-created_at')
@@ -16,18 +28,7 @@ class CustomPerfumeView(APIView):
 
 class CustomPerfumeCreateView(APIView):
     def get (self, request):
-        notes = Note.objects.all()[:974] # Note id=973까지가 커스텀 향수 제작시 사용되는 향
-        
-        # cnt는 현재 향이 쓰이고 있는지 확인하는 변수
-        custom_notes = []
-        for note in notes:
-            cnt = 0
-            cnt += note.perfumes_top.aggregate(cnt=Count('id'))["cnt"]
-            cnt += note.perfumes_none.aggregate(cnt=Count('id'))["cnt"]
-            cnt += note.perfumes_heart.aggregate(cnt=Count('id'))["cnt"]
-            cnt += note.perfumes_base.aggregate(cnt=Count('id'))["cnt"]
-            if cnt > 1:
-                custom_notes.append(note)
+        custom_notes = CustomNoteView.custom_notes
         packages = Package.objects.all()
         note_category = NoteCategory.objects.all()
         package_category = PackageCategory.objects.all()
