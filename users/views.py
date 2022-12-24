@@ -101,7 +101,7 @@ class UserPasswordResetView(PasswordResetView):
     def form_valid(self, form):
         if User.objects.filter(Q(email=self.request.POST.get("email")) & Q(email_valid=0)):
             return HttpResponse(
-        "<script>alert('해당 이메일은 카카오 간편가입 계정입니다.\\n로그인 페이지에서 카카오 소셜 로그인을 이용해주세요.');location.href='http://127.0.0.1:5500/users/signin.html';</script>")
+        "<script>alert('해당 이메일은 카카오 간편가입 계정입니다.\\n로그인 페이지에서 카카오 소셜 로그인을 이용해주세요.');location.href='https://www.mmop-perfume.com/users/signin.html';</script>")
         else:
             if User.objects.filter(email=self.request.POST.get("email")).exists():
                 return super().form_valid(form)

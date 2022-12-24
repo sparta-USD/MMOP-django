@@ -23,14 +23,14 @@ document.addEventListener("DOMContentLoaded", function(){
         const link_pathname =  document.location.pathname;
         if(disallow_path.includes(link_pathname)){
             alert("이미 로그인되어 있습니다");
-            location.href = "/";
+            location.href = "https://www.mmop-perfume.com/";
         }
     }else{
         const disallow_path = ['/mypage.html','/create_review.html']
         const link_pathname =  document.location.pathname;
         if(disallow_path.includes(link_pathname)){
             alert("로그인한 유저만 접근 가능합니다! 로그인해주세요 :)")
-            location.href = "/users/signin.html";
+            location.href = "https://www.mmop-perfume.com/users/signin.html";
         }
     }
 });
@@ -51,7 +51,7 @@ $(".none_link").on("click",function(e){
 });
 
 async function handleSurveyCheck(){
-    const response = await fetch('http://127.0.0.1:8000/perfume/survey/',{
+    const response = await fetch('https://api.mmop-perfume.com/perfume/survey/',{
         headers: {
             "Authorization":"Bearer " + localStorage.getItem("access"),
         },
@@ -59,7 +59,7 @@ async function handleSurveyCheck(){
     }).then(response => {
         if(!response.ok){
             if(response.status==401){
-                location.href="/survey.html"
+                location.href="https://www.mmop-perfume.com/survey.html"
             }
             throw new Error(`${response.status} 에러가 발생했습니다.`);    
         }
@@ -67,9 +67,9 @@ async function handleSurveyCheck(){
     }).then(result => {
         const response_json = result;
         if(response_json.length){
-            location.href="/recommend.html"
+            location.href="https://www.mmop-perfume.com/recommend.html"
         }else{
-            location.href="/survey.html"
+            location.href="https://www.mmop-perfume.com/survey.html"
         }
     }).catch(error => {
         console.warn(error.message)
@@ -81,7 +81,7 @@ async function clickLike(e, el){
     e.preventDefault(); 
 
     perfume_id = target = el.closest(".item_card").getAttribute("id").replace("perfume_","");
-    const response = await fetch('http://127.0.0.1:8000/perfume/'+perfume_id+'/like/', {
+    const response = await fetch('https://api.mmop-perfume.com/perfume/'+perfume_id+'/like/', {
         headers: {
             "Authorization":"Bearer " + localStorage.getItem("access"),
         },
@@ -94,7 +94,7 @@ async function clickLike(e, el){
             }
             else if(response.status==404){
                 alert("경로가 잘못되었습니다! 다시 입력해주세요 :)")
-                location.href="/";
+                location.href="https://www.mmop-perfume.com/";
             }
             throw new Error(`${response.status} 에러가 발생했습니다.`);    
         }
