@@ -18,9 +18,14 @@ class NoteCategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class NoteSerializer(serializers.ModelSerializer):
+    tag = serializers.SerializerMethodField()
+    
     class Meta:
         model = Note
         fields = '__all__'
+    
+    def get_tag(self, obj):
+        return list(item.strip() for item in obj.tag.split(','))
 
 class CustomPerfumeSerializer(serializers.ModelSerializer):
     note01 = NoteSerializer()
