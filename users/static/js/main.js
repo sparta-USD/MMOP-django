@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if(user_email){
         document.querySelector("header .nav-right.navbar_menu").innerHTML = `
             <li class="navbar_item">
-                <a href="/mypage.html">
+                <a href="https://www.mmop-perfume.com/mypage.html">
                     MYPAGE
                 </a>
             </li>
@@ -119,9 +119,9 @@ function gnbSearchPerfume(){
     const search_url = "https://www.mmop-perfume.com/search.html?search="+search_keyword;
     location.href = search_url;
 }
-
 document.getElementById("gnb_searchinput").addEventListener("keypress", function(event){
     if(event.keyCode == 13){
         gnbSearchPerfume();
     }
 });
+
