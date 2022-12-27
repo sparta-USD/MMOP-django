@@ -9,7 +9,7 @@ from django.db.models import Count
 
 # Create your views here.
 class CustomNoteView(APIView):
-    notes = Note.objects.all()[:974] # Note id=973까지가 커스텀 향수 제작시 사용되는 향
+    notes = Note.objects.filter(id__lte=973) # Note id=973까지가 커스텀 향수 제작시 사용되는 향
     custom_notes = []
     for note in notes:
         cnt = 0
