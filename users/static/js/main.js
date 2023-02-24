@@ -5,7 +5,7 @@ window.addEventListener('scroll', function() {
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-    console.log("jenkins 성공")
+    console.log("jenkins CI/CD 성공")
     user_email = localStorage.getItem("email")
     if(user_email){
         document.querySelector("header .nav-right.navbar_menu").innerHTML = `
